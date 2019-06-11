@@ -1,0 +1,122 @@
+@font-face {
+  font-family: 'Roboto Regular';
+  src: url("fonts/Roboto-Regular.eot");
+  src: url("fonts/Roboto-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/Roboto-Regular.woff") format("woff"), url("fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: #83aefd;
+  font-family: 'Roboto Regular';
+}
+
+.container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1.1fr 2fr 2fr;
+      grid-template-columns: 1.1fr 2fr 2fr;
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  height: 100%;
+}
+
+.childrens,
+.children_info,
+.trustee_info {
+  padding: 10px;
+}
+
+.childrens {
+  border-right: 1px solid #000;
+}
+
+.childrens h2 {
+  text-align: center;
+}
+
+.childrens_head {
+  height: 10%;
+  margin-bottom: 10px;
+}
+
+.childrens .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.childrens .nav input {
+  height: 20px;
+  background: #83aefd;
+  border: none;
+  border-bottom: 2px solid #000;
+  margin-right: 10px;
+}
+
+.childrens .nav input:focus {
+  background: #fff;
+}
+
+.childrens .nav .new_children {
+  width: 22px;
+  height: 22px;
+  background-image: url(icons/user.svg);
+  background-repeat: no-repeat;
+}
+
+.childrens .children_list {
+  background-color: #5b85d4;
+  height: 89%;
+}
+
+.childrens .children_list_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 2px;
+}
+
+.childrens .children_list_item:hover {
+  margin-bottom: 1px;
+  border-bottom: 1px solid #000;
+}
+
+.childrens .children_list_item span {
+  display: block;
+  width: 70%;
+  height: 1em;
+  max-width: 70%;
+  overflow: hidden;
+}
+
+.childrens .children_list_item .button {
+  width: 19px;
+  height: 19px;
+  margin-right: 4px;
+  margin-left: 4px;
+  color: #000;
+  background-size: 18px;
+}
+
+.childrens .children_list_item .change {
+  background-image: url(icons/change.svg);
+  background-repeat: no-repeat;
+}
+
+.childrens .children_list_item .to_list {
+  background-image: url(icons/plus.svg);
+  background-repeat: no-repeat;
+}
+
+.childrens .children_list_item .delete {
+  background-image: url(icons/delete.svg);
+  background-repeat: no-repeat;
+}
+/*# sourceMappingURL=style.css.map */

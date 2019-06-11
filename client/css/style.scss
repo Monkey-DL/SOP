@@ -1,0 +1,111 @@
+@import "fonts/fonts";
+
+$fon_color: #83aefd;
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: $fon_color;
+    font-family: 'Roboto Regular';
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1.1fr 2fr 2fr;
+    grid-template-rows: 1fr;
+    height: 100%;
+}
+
+.childrens,
+.children_info,
+.trustee_info {
+    padding: 10px;
+}
+
+.childrens {
+    border-right: 1px solid #000;
+
+    h2 {
+        text-align: center;
+    }
+
+    &_head {
+        height: 10%;
+        margin-bottom: 10px;
+    }
+
+    .nav {
+        display: flex;
+
+        input {
+            height: 20px;
+            background: $fon_color;
+            border: none;
+            border-bottom: 2px solid #000;
+            margin-right: 10px;
+
+            &:focus {
+                background: #fff;
+            }
+        }
+
+        .new_children {
+            width: 22px;
+            height: 22px;
+            background-image: url(icons/user.svg);
+            background-repeat: no-repeat;
+        }
+    }
+
+    .children_list {
+        background-color: #5b85d4;
+        height: 89%;
+
+        &_item {
+            display: flex;
+            margin-bottom: 2px;
+
+            &:hover {
+                margin-bottom: 1px;
+                border-bottom: 1px solid #000;
+            }
+
+            span {
+                display: block;
+                width: 70%;
+                height: 1em;
+                max-width: 70%;
+                overflow: hidden;
+            }
+
+            .button {
+                width: 19px;
+                height: 19px;
+                margin-right: 4px;
+                margin-left: 4px;
+                color:#000;
+                background-size: 18px;
+            }
+
+            .change {
+                background-image: url(icons/change.svg);
+                background-repeat: no-repeat;
+            }
+
+            .to_list {
+                background-image: url(icons/plus.svg);
+                background-repeat: no-repeat;
+            }
+
+            .delete {
+                background-image: url(icons/delete.svg);
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
