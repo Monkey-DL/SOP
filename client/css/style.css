@@ -13,8 +13,10 @@
 
 body {
   height: 100vh;
-  background-color: #83aefd;
+  background-color: #fff;
   font-family: 'Roboto Regular';
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 h2 {
@@ -22,75 +24,96 @@ h2 {
 }
 
 .container {
+  height: 100%;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1.1fr 2.5fr 1.4fr;
       grid-template-columns: 1.1fr 2.5fr 1.4fr;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-  height: 100%;
+  grid-column-gap: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
 }
 
-.childrens,
-.children_info,
-.trustee_info {
-  border-right: 1px solid #000;
-  padding: 10px;
+.textHead {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: textHead;
+}
+
+h2 {
+  text-align: center;
+}
+
+.change {
+  background-image: url(icons/change.svg);
+  background-repeat: no-repeat;
+}
+
+.to_list {
+  background-image: url(icons/plus.svg);
+  background-repeat: no-repeat;
+}
+
+.delete {
+  background-image: url(icons/delete.svg);
+  background-repeat: no-repeat;
 }
 
 .childrens {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr 7fr;
-      grid-template-rows: 1fr 7fr;
-}
-
-.childrens h2 {
-  text-align: center;
+  -ms-grid-rows: 30px auto 1fr;
+      grid-template-rows: 30px auto 1fr;
+  grid-row-gap: 5px;
 }
 
 .childrens .nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 5px;
+  background-color: #739dec;
+  border-radius: 5px;
 }
 
 .childrens .nav input {
   height: 20px;
-  background: #83aefd;
+  background: #739dec;
   border: none;
   border-bottom: 2px solid #000;
   margin-right: 10px;
+  width: 89%;
 }
 
 .childrens .nav input:focus {
-  background: #fff;
+  outline: 0;
 }
 
 .childrens .nav .new_children {
-  width: 22px;
-  height: 22px;
+  padding: 12px;
   background-image: url(icons/user.svg);
   background-repeat: no-repeat;
 }
 
 .childrens .children_list {
-  background-color: #5b85d4;
+  background-color: #739dec;
   height: 100%;
-  padding-top: 2px;
+  padding: 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 .childrens .children_list_item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 2px;
-  margin-top: 2px;
-}
-
-.childrens .children_list_item:hover {
-  margin-bottom: 1px;
-  border-bottom: 1px solid #000;
+  padding: 2px;
 }
 
 .childrens .children_list_item span {
@@ -107,79 +130,132 @@ h2 {
   margin-right: 4px;
   margin-left: 4px;
   color: #000;
-  background-size: 18px;
+  background-size: 16px;
 }
 
-.childrens .children_list_item .change {
-  background-image: url(icons/change.svg);
-  background-repeat: no-repeat;
+.childrens .children_list_item:nth-child(2n) {
+  background-color: #5b85d4;
 }
 
-.childrens .children_list_item .to_list {
-  background-image: url(icons/plus.svg);
-  background-repeat: no-repeat;
+.childrens .children_list_item:hover {
+  background-color: #96b9fa;
 }
 
-.childrens .children_list_item .delete {
-  background-image: url(icons/delete.svg);
-  background-repeat: no-repeat;
-}
-
-.children_info_container {
+.children_info {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (0.9fr)[4];
-      grid-template-rows: repeat(4, 0.9fr);
-      grid-template-areas: "fio sop" "education sop" "contacts note" "location trustee";
+  -ms-grid-rows: 30px (auto)[4];
+      grid-template-rows: 30px repeat(4, auto);
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+      grid-template-areas: "textHead textHead" "fio sop" "education sop" "contacts note" "location trustee";
+}
+
+.children_info_group {
+  background-color: #739dec;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.children_info p {
+  background-color: #5b85d4;
 }
 
 .children_info .fio {
-  -ms-grid-row: 1;
+  -ms-grid-row: 2;
   -ms-grid-column: 1;
   grid-area: fio;
 }
 
 .children_info .sop {
-  -ms-grid-row: 1;
+  -ms-grid-row: 2;
   -ms-grid-row-span: 2;
   -ms-grid-column: 2;
   grid-area: sop;
 }
 
 .children_info .education {
-  -ms-grid-row: 2;
+  -ms-grid-row: 3;
   -ms-grid-column: 1;
   grid-area: education;
 }
 
 .children_info .contacts {
-  -ms-grid-row: 3;
+  -ms-grid-row: 4;
   -ms-grid-column: 1;
   grid-area: contacts;
 }
 
 .children_info .location {
-  -ms-grid-row: 4;
+  -ms-grid-row: 5;
   -ms-grid-column: 1;
   grid-area: location;
 }
 
 .children_info .trustee {
-  -ms-grid-row: 4;
+  -ms-grid-row: 5;
   -ms-grid-column: 2;
   grid-area: trustee;
 }
 
 .children_info .note {
-  -ms-grid-row: 3;
+  -ms-grid-row: 4;
   -ms-grid-column: 2;
   grid-area: note;
 }
 
 .children_info .trustee_list {
-  width: 96%;
-  height: 200px;
-  max-height: 200px;
+  background-color: #5b85d4;
+}
+
+.children_info .trustee_list_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2px;
+}
+
+.children_info .trustee_list_item span {
+  display: block;
+  width: 70%;
+  height: 1.2em;
+  max-width: 70%;
+  overflow: hidden;
+}
+
+.children_info .trustee_list_item .button {
+  width: 19px;
+  height: 19px;
+  margin-right: 4px;
+  margin-left: 4px;
+  color: #000;
+  background-size: 16px;
+}
+
+.children_info .trustee_list_item:nth-child(2n+1) {
+  background-color: #739dec;
+}
+
+.children_info .trustee_list_item:hover {
+  background-color: #96b9fa;
+}
+
+.trustee_info {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 30px (auto)[4];
+      grid-template-rows: 30px repeat(4, auto);
+  grid-row-gap: 5px;
+  grid-column-gap: 5px;
+}
+
+.trustee_info_group {
+  background-color: #739dec;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.trustee_info p {
   background-color: #5b85d4;
 }
 /*# sourceMappingURL=style.css.map */

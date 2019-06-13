@@ -1,7 +1,8 @@
 @import "fonts/fonts";
 
-$fon_color: #83aefd;
-$list_fon: #5b85d4;
+$fonColor: #fff;
+$listFon: #5b85d4;
+$cardColor: #739dec;
 
 
 * {
@@ -11,8 +12,9 @@ $list_fon: #5b85d4;
 
 body {
     height: 100vh;
-    background-color: $fon_color;
+    background-color: $fonColor;
     font-family: 'Roboto Regular';
+    box-sizing: border-box;
 }
 
 h2 {
@@ -20,66 +22,82 @@ h2 {
 }
 
 .container {
+    height: 100%;
     display: grid;
     grid-template-columns: 1.1fr 2.5fr 1.4fr;
     grid-template-rows: 1fr;
-    height: 100%;
-}
-
-.childrens,
-.children_info,
-.trustee_info {
-    border-right: 1px solid #000;
+    grid-column-gap: 5px;
+    box-sizing: border-box;
     padding: 10px;
 }
 
+.textHead {
+    grid-area: textHead;
+}
 
+h2 {
+    text-align: center;
+}
+
+
+
+.change {
+    background-image: url(icons/change.svg);
+    background-repeat: no-repeat;
+}
+
+.to_list {
+    background-image: url(icons/plus.svg);
+    background-repeat: no-repeat;
+}
+
+.delete {
+    background-image: url(icons/delete.svg);
+    background-repeat: no-repeat;
+}
 
 .childrens {
     display: grid;
-    grid-template-rows: 1fr 7fr;
-
-    h2 {
-        text-align: center;
-    }
+    grid-template-rows: 30px auto 1fr;
+    grid-row-gap: 5px;
 
     .nav {
         display: flex;
+        padding: 5px;
+        background-color: $cardColor;
+        border-radius: 5px;
 
         input {
             height: 20px;
-            background: $fon_color;
+            background: $cardColor;
             border: none;
             border-bottom: 2px solid #000;
             margin-right: 10px;
+            width: 89%;
 
             &:focus {
-                background: #fff;
+                outline: 0;
             }
         }
 
         .new_children {
-            width: 22px;
-            height: 22px;
+            padding: 12px;
             background-image: url(icons/user.svg);
             background-repeat: no-repeat;
         }
     }
 
     .children_list {
-        background-color: $list_fon;
+        background-color: $cardColor;
         height: 100%;
-        padding-top: 2px;
+        padding: 5px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        border-radius: 5px;
 
         &_item {
             display: flex;
-            margin-bottom: 2px;
-            margin-top: 2px;
-
-            &:hover {
-                margin-bottom: 1px;
-                border-bottom: 1px solid #000;
-            }
+            padding: 2px;
 
             span {
                 display: block;
@@ -95,38 +113,40 @@ h2 {
                 margin-right: 4px;
                 margin-left: 4px;
                 color: #000;
-                background-size: 18px;
+                background-size: 16px;
             }
 
-            .change {
-                background-image: url(icons/change.svg);
-                background-repeat: no-repeat;
+            &:nth-child(2n) {
+                background-color: $listFon;
             }
 
-            .to_list {
-                background-image: url(icons/plus.svg);
-                background-repeat: no-repeat;
-            }
-
-            .delete {
-                background-image: url(icons/delete.svg);
-                background-repeat: no-repeat;
+            &:hover {
+                background-color: #96b9fa;
             }
         }
     }
 }
 
 .children_info {
+    display: grid;
+    grid-template-rows: 30px repeat(4, auto);
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+    grid-template-areas:
+        "textHead textHead"
+        "fio sop"
+        "education sop"
+        "contacts note"
+        "location trustee";
 
-    &_container {
-        display: grid;
-        grid-template-rows: repeat(4, 0.9fr);
-        grid-template-areas:
-            "fio sop"
-            "education sop"
-            "contacts note"
-            "location trustee";
+    &_group {
+        background-color: $cardColor;
+        border-radius: 5px;
+        padding: 5px;
+    }
 
+    p {
+        background-color: $listFon;
     }
 
     .fio {
@@ -158,9 +178,53 @@ h2 {
     }
 
     .trustee_list {
-        width: 96%;
-        height: 200px;
-        max-height: 200px;
-        background-color: $list_fon;
+        background-color: $listFon;
+
+        &_item {
+            display: flex;
+            padding: 2px;
+
+            span {
+                display: block;
+                width: 70%;
+                height: 1.2em;
+                max-width: 70%;
+                overflow: hidden;
+            }
+
+            .button {
+                width: 19px;
+                height: 19px;
+                margin-right: 4px;
+                margin-left: 4px;
+                color: #000;
+                background-size: 16px;
+            }
+
+            &:nth-child(2n+1) {
+                background-color: $cardColor;
+            }
+
+            &:hover {
+                background-color: #96b9fa;
+            }
+        }
+    }
+}
+
+.trustee_info {
+    display: grid;
+    grid-template-rows: 30px repeat(4, auto);
+    grid-row-gap: 5px;
+    grid-column-gap: 5px;
+
+    &_group {
+        background-color: $cardColor;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    p {
+        background-color: $listFon;
     }
 }
