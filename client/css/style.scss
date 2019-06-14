@@ -10,25 +10,20 @@ $cardColor: #739dec;
     margin: 0;
 }
 
-body {
+.container {
     height: 100vh;
     background-color: $fonColor;
     font-family: 'Roboto Regular';
     box-sizing: border-box;
-}
-
-h2 {
-    margin-bottom: 10px;
-}
-
-.container {
-    height: 100%;
+    padding: 10px;
     display: grid;
     grid-template-columns: 1.1fr 2.5fr 1.4fr;
     grid-template-rows: 1fr;
     grid-column-gap: 5px;
-    box-sizing: border-box;
-    padding: 10px;
+}
+
+h2 {
+    margin-bottom: 10px;
 }
 
 .textHead {
@@ -38,8 +33,6 @@ h2 {
 h2 {
     text-align: center;
 }
-
-
 
 .change {
     background-image: url(icons/change.svg);
@@ -58,7 +51,7 @@ h2 {
 
 .childrens {
     display: grid;
-    grid-template-rows: 30px auto 1fr;
+    grid-template-rows: 30px auto 797px;
     grid-row-gap: 5px;
 
     .nav {
@@ -80,7 +73,7 @@ h2 {
             }
         }
 
-        .new_children {
+        #newChildrenButton {
             padding: 12px;
             background-image: url(icons/user.svg);
             background-repeat: no-repeat;
@@ -94,6 +87,13 @@ h2 {
         box-sizing: border-box;
         margin-bottom: 10px;
         border-radius: 5px;
+        overflow-y: auto;
+
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background-color: transparent;
+        }
 
         &_item {
             display: flex;
@@ -108,12 +108,12 @@ h2 {
             }
 
             .button {
-                width: 19px;
-                height: 19px;
+                width: 20px;
+                height: 20px;
                 margin-right: 4px;
                 margin-left: 4px;
                 color: #000;
-                background-size: 16px;
+                background-size: 18px;
             }
 
             &:nth-child(2n) {
@@ -129,7 +129,7 @@ h2 {
 
 .children_info {
     display: grid;
-    grid-template-rows: 30px repeat(4, auto);
+    grid-template-rows: 30px repeat(3, auto) 202.5px;
     grid-row-gap: 5px;
     grid-column-gap: 5px;
     grid-template-areas:
@@ -178,7 +178,10 @@ h2 {
     }
 
     .trustee_list {
-        background-color: $listFon;
+        height: 80%;
+        overflow-y: auto;
+        padding:5px;
+
 
         &_item {
             display: flex;
@@ -201,8 +204,8 @@ h2 {
                 background-size: 16px;
             }
 
-            &:nth-child(2n+1) {
-                background-color: $cardColor;
+            &:nth-child(2n) {
+                background-color: $listFon;
             }
 
             &:hover {

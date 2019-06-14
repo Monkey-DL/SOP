@@ -6,7 +6,7 @@ for (let i = 0; i < 10; i++) {
 };
 
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 1; i++) {
     childrens.push(new Children());
     for (let j = 0; j < 2; j++) {
         childrens[i].addTruste(i);
@@ -86,6 +86,13 @@ function showChildrenInfo(index) {
 
     }
 }
+let newChildren;
+let newChildrenButton = document.getElementById("newChildrenButton");
+newChildrenButton.addEventListener("click", function () {
+    newChildren= new Children();
+    console.log(newChildren);
+});
+// function newChildren(){};
 
 for (let i = 0; i < childrens.length; i++) {
     let childrenItem = document.createElement("div");
