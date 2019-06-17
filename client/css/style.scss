@@ -14,6 +14,7 @@ $cardColor: #739dec;
     height: 100vh;
     background-color: $fonColor;
     font-family: 'Roboto Regular';
+    font-size:14px;
     box-sizing: border-box;
     padding: 10px;
     display: grid;
@@ -49,35 +50,49 @@ h2 {
     background-repeat: no-repeat;
 }
 
+.button {
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    margin-left: 4px;
+    color: #000;
+    background-size: 1em;
+}
+input {
+    display: block;
+    height: 20px;
+    background: $cardColor;
+    border: none;
+    border-bottom: 2px solid #000;
+    width:100%;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.displaynone{
+    display: none;
+}
+
 .childrens {
     display: grid;
-    grid-template-rows: 30px auto 797px;
+    grid-template-rows: 30px auto auto 764.5px;
     grid-row-gap: 5px;
 
     .nav {
-        display: flex;
         padding: 5px;
         background-color: $cardColor;
         border-radius: 5px;
-
-        input {
-            height: 20px;
-            background: $cardColor;
-            border: none;
-            border-bottom: 2px solid #000;
-            margin-right: 10px;
-            width: 89%;
-
-            &:focus {
-                outline: 0;
-            }
-        }
-
-        #newChildrenButton {
-            padding: 12px;
-            background-image: url(icons/user.svg);
-            background-repeat: no-repeat;
-        }
+    }
+    #newChildrenButton {
+        box-sizing: border-box;
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+        background-color: $cardColor;
+        border-radius: 5px;
+        cursor: default;
     }
 
     .children_list {
@@ -105,17 +120,8 @@ h2 {
                 height: 1.2em;
                 max-width: 70%;
                 overflow: hidden;
+                cursor: default;
             }
-
-            .button {
-                width: 20px;
-                height: 20px;
-                margin-right: 4px;
-                margin-left: 4px;
-                color: #000;
-                background-size: 18px;
-            }
-
             &:nth-child(2n) {
                 background-color: $listFon;
             }
@@ -175,6 +181,7 @@ h2 {
 
     .note {
         grid-area: note;
+
     }
 
     .trustee_list {
@@ -193,16 +200,10 @@ h2 {
                 height: 1.2em;
                 max-width: 70%;
                 overflow: hidden;
+                cursor: default;
             }
 
-            .button {
-                width: 19px;
-                height: 19px;
-                margin-right: 4px;
-                margin-left: 4px;
-                color: #000;
-                background-size: 16px;
-            }
+            
 
             &:nth-child(2n) {
                 background-color: $listFon;
@@ -225,6 +226,7 @@ h2 {
         background-color: $cardColor;
         border-radius: 5px;
         padding: 5px;
+        width: 345;
     }
 
     p {

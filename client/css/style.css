@@ -15,6 +15,7 @@
   height: 100vh;
   background-color: #fff;
   font-family: 'Roboto Regular';
+  font-size: 14px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
@@ -57,40 +58,55 @@ h2 {
   background-repeat: no-repeat;
 }
 
+.button {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  margin-left: 4px;
+  color: #000;
+  background-size: 1em;
+}
+
+input {
+  display: block;
+  height: 20px;
+  background: #739dec;
+  border: none;
+  border-bottom: 2px solid #000;
+  width: 100%;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.displaynone {
+  display: none;
+}
+
 .childrens {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 30px auto 797px;
-      grid-template-rows: 30px auto 797px;
+  -ms-grid-rows: 30px auto auto 764.5px;
+      grid-template-rows: 30px auto auto 764.5px;
   grid-row-gap: 5px;
 }
 
 .childrens .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   padding: 5px;
   background-color: #739dec;
   border-radius: 5px;
 }
 
-.childrens .nav input {
-  height: 20px;
-  background: #739dec;
-  border: none;
-  border-bottom: 2px solid #000;
-  margin-right: 10px;
-  width: 89%;
-}
-
-.childrens .nav input:focus {
-  outline: 0;
-}
-
-.childrens .nav #newChildrenButton {
-  padding: 12px;
-  background-image: url(icons/user.svg);
-  background-repeat: no-repeat;
+.childrens #newChildrenButton {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  background-color: #739dec;
+  border-radius: 5px;
+  cursor: default;
 }
 
 .childrens .children_list {
@@ -122,15 +138,7 @@ h2 {
   height: 1.2em;
   max-width: 70%;
   overflow: hidden;
-}
-
-.childrens .children_list_item .button {
-  width: 20px;
-  height: 20px;
-  margin-right: 4px;
-  margin-left: 4px;
-  color: #000;
-  background-size: 18px;
+  cursor: default;
 }
 
 .childrens .children_list_item:nth-child(2n) {
@@ -223,15 +231,7 @@ h2 {
   height: 1.2em;
   max-width: 70%;
   overflow: hidden;
-}
-
-.children_info .trustee_list_item .button {
-  width: 19px;
-  height: 19px;
-  margin-right: 4px;
-  margin-left: 4px;
-  color: #000;
-  background-size: 16px;
+  cursor: default;
 }
 
 .children_info .trustee_list_item:nth-child(2n) {
@@ -255,6 +255,7 @@ h2 {
   background-color: #739dec;
   border-radius: 5px;
   padding: 5px;
+  width: 345;
 }
 
 .trustee_info p {

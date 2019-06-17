@@ -16,11 +16,10 @@
             <div class="childrens_head">
                 <div class="nav">
                     <input type="text">
-                    <div id="newChildrenButton" class="new_children"></div>
                 </div>
             </div>
+            <div id="newChildrenButton">Добавить ребёнка</div>
             <div id="childrenList" class="children_list">
-
             </div>
         </div>
         <div class="children_info">
@@ -30,18 +29,22 @@
                 <div class="label">
                     <span>Фамилия: </span>
                     <p id="childrenLastName"></p>
+                    <input type="text" id="childrenLastNameInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Имя: </span>
                     <p id="childrenFirstName"></p>
+                    <input type="text" id="childrenFirstNameInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Отчество: </span>
                     <p id="childrenPatronymic"></p>
+                    <input type="text" id="childrenPatronymicInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Дата рождения: </span>
                     <p id="childrenBirthday"></p>
+                    <input type="date" id="childrenBirthdayInput" class="displaynone">
                 </div>
             </div>
             <div class="children_info_group education">
@@ -49,14 +52,17 @@
                 <div class="label">
                     <span>Учереждение образования: </span>
                     <p id="childrenSchool"></p>
+                    <input type="text" id="childrenSchoolInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Класс: </span>
                     <p id="childrenClassNumber"></p>
+                    <input type="text" id="childrenClassNumberInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Фактическое место обучения: </span>
                     <p id="childrenPlaceOfStudy"></p>
+                    <input type="text" id="childrenPlaceOfStudyInput" class="displaynone">
                 </div>
             </div>
             <div class="children_info_group contacts">
@@ -64,10 +70,12 @@
                 <div class="label">
                     <span>Домашний телефон: </span>
                     <p id="childrenHomeNumber"></p>
+                    <input type="text" id="childrenHomeNumberInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Мобильный телефон: </span>
                     <p id="childrenMobileNumber"></p>
+                    <input type="text" id="childrenMobileNumberInput" class="displaynone">
                 </div>
             </div>
             <div class="children_info_group location">
@@ -75,15 +83,17 @@
                 <div class="label">
                     <span>Сельсовет: </span>
                     <p id="childrenVillageCouncil"></p>
+                    <input type="text" id="childrenVillageCouncilInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Населённый пункт: </span>
                     <p id="childrenLocality"></p>
+                    <input type="text" id="childrenLocalityInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Адрес: </span>
-                    <p id="childrenAddress">
-                        </ps>
+                    <p id="childrenAddress"></p>
+                    <input type="text" id="childrenAddressInput" class="displaynone">
                 </div>
             </div>
             <div class="children_info_group sop">
@@ -98,13 +108,18 @@
                 </div>
                 <div class="label">
                     <span>Срок котроля: </span>
-                    <p id="childrenTermOfSale">
-                        </ps>
+                    <p id="childrenTermOfSale"></p>
+                </div>
+                <div class="label">
+                    <span>критерии и показатели СОП: </span>
+                    <p id="childrenNorm"></p>
+                    <input type="text" id="childrenNormInput" class="displaynone">
                 </div>
             </div>
             <div class="children_info_group note">
                 <h3>Заметки</h3>
                 <span id="childrenNotes"></span>
+                <textarea name="" id="childrenNotesInput" cols="30" rows="10" class="displaynone"></textarea>
             </div>
             <div class="children_info_group trustee">
                 <h3>Опекуны</h3>
@@ -130,11 +145,11 @@
                 </div>
                 <div class="label">
                     <span>Дата рождения: </span>
-                    <p id="trusteeBirthdayы"></p>
+                    <p id="trusteeBirthday"></p>
                 </div>
                 <div class="label">
                     <span>Отношения с ребёнком: </span>
-                    <p id="trusteeBirthdayы"></p>
+                    <p id="trusteeRelations"></p>
                 </div>
             </div>
             <div class="trustee_info_group trustee_fio">
@@ -199,9 +214,10 @@
                 <span id="trusteeNotes"></span>
             </div>
         </div>
-    <script src="js/trustee.js"></script>
-    <script src="js/children.js"></script>
-    <script src="js/index.js"></script>
+        <script src="js/information.js"></script>
+        <script src="js/trustee.js"></script>
+        <script src="js/children.js"></script>
+        <script src="js/index.js"></script>
 
 </body>
 
