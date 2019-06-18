@@ -123,6 +123,7 @@
             </div>
             <div class="children_info_group trustee">
                 <h3>Опекуны</h3>
+                <div id="newTrusteeButton" class="displaynone">Добавить опекуна</div>
                 <div id="childrenTrusteeList" class="trustee_list">
                 </div>
             </div>
@@ -134,22 +135,27 @@
                 <div class="label">
                     <span>Фамилия: </span>
                     <p id="trusteeLastName"></p>
+                    <input type="text" id="trusteeLastNameInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Имя: </span>
                     <p id="trusteeFirstName"></p>
+                    <input type="text" id="trusteeFirstNameInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Отчество: </span>
                     <p id="trusteePatronymic"></p>
+                    <input type="text" id="trusteePatronymicInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Дата рождения: </span>
                     <p id="trusteeBirthday"></p>
+                    <input type="date" id="trusteeBirthdayInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Отношения с ребёнком: </span>
                     <p id="trusteeRelations"></p>
+                    <input type="text" id="trusteeRelationsInput" class="displaynone">
                 </div>
             </div>
             <div class="trustee_info_group trustee_fio">
@@ -157,18 +163,22 @@
                 <div class="label">
                     <span>Домашний телефон: </span>
                     <p id="trusteeHomeNumber"></p>
+                    <input type="text" id="trusteeHomeNumberInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Мобильный телефон: </span>
                     <p id="trusteeMobileNumber"></p>
+                    <input type="text" id="trusteeMobileNumberInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Рабочий телефон: </span>
                     <p id="trusteeWorkNumber"></p>
+                    <input type="text" id="trusteeWorkNumberInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Электронныя почта: </span>
                     <p id="trusteeEmail"></p>
+                    <input type="text" id="trusteeEmailInput" class="displaynone">
                 </div>
             </div>
             <div class="trustee_info_group trustee_fio">
@@ -176,22 +186,27 @@
                 <div class="label">
                     <span>Район: </span>
                     <p id="trusteeDistrict"></p>
+                    <input type="text" id="trusteeDistrictInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Сельсовет: </span>
                     <p id="trusteeVillageCouncil"></p>
+                    <input type="text" id="trusteeVillageCouncilInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Населённый пункт: </span>
                     <p id="trusteeLocality"></p>
+                    <input type="text" id="trusteeLocalityInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Адрес: </span>
                     <p id="trusteeAddress"></p>
+                    <input type="text" id="trusteeAddressInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Индекс: </span>
                     <p id="trusteeIndex"></p>
+                    <input type="text" id="trusteeIndexInput" class="displaynone">
                 </div>
             </div>
             <div class="trustee_info_group trustee_fio">
@@ -199,19 +214,23 @@
                 <div class="label">
                     <span>Место работы: </span>
                     <p id="trusteeWork"></p>
+                    <input type="text" id="trusteeWorkInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Должность: </span>
                     <p id="trusteePosition"></p>
+                    <input type="text" id="trusteePositionInput" class="displaynone">
                 </div>
                 <div class="label">
                     <span>Занятость: </span>
                     <p id="trusteeCurrentEmployment"></p>
+                    <input type="text" id="trusteeCurrentEmploymentInput" class="displaynone">
                 </div>
             </div>
             <div class="trustee_info_group trustee_fio">
                 <h3>Заметки</h3>
                 <span id="trusteeNotes"></span>
+                <textarea name="" id="trusteeLastNotesInput" cols="20" rows="10" class="displaynone"></textarea>
             </div>
         </div>
         <script src="js/information.js"></script>

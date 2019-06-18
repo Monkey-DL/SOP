@@ -1,6 +1,6 @@
 class Trustee {
-    constructor() {
-        this.id;
+    constructor(trustees) {
+        this.id=0;
         this.status = "Мама";
         this.firstName = "Егор";
         this.lastName = "Матвеев";
@@ -23,8 +23,18 @@ class Trustee {
         this.position;
         this.currentEmployment;
 
-        this.notes="AAAAAA AAAAAAA AAAAAAA  vAAAAAAAAss AAAAAAAA AAAAAAAAAa";
+        this.notes;
+
+        trustees.forEach(trustee => {
+            if(trustee.getId()>=this.id){
+                this.id=trustee.getId()+1;
+            }
+        });
     };
+
+    getId(){
+        return this.id;
+    }
 
     getStatus() {
         return this.status;
@@ -82,6 +92,14 @@ class Trustee {
     }
     getNotes() {
         return this.notes;
+    }
+
+    getTrustee(trustees, trusteeID){
+        trustees.forEach(element => {
+            if(element.getId()==trusteeID){
+                return element;
+            }
+        });
     }
 
 }

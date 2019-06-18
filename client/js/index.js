@@ -1,79 +1,94 @@
 let childrens = [];
 let trustees = [];
 
-// for (let i = 0; i < 10; i++) {
-//     trustees.push(new Trustee());
-// };
+for (let i = 0; i < 10; i++) {
+    trustees.push(new Trustee(trustees));
+    console.log(trustees[i]);
+    
+};
 
 
-// for (let i = 0; i < 2; i++) {
-//     childrens.push(new Children());
-//     for (let j = 0; j < 2; j++) {
-//         childrens[i].addTruste(i);
-//     };
-// };
+for (let i = 0; i < 2; i++) {
+    childrens.push(new Children());
+    for (let j = 0; j < 2; j++) {
+        childrens[i].addTruste(i);
+    };
+};
 
 let childrenList = document.getElementById("childrenList");
 
-let newChildren;
+let targetChildren;
 let newChildrenToggle = true;
-let newChildrenButton = document.getElementById("newChildrenButton");
-newChildrenButton.addEventListener("click", function () {
+let targetChildrenButton = document.getElementById("newChildrenButton");
+targetChildrenButton.addEventListener("click", function () {
     if (newChildrenToggle) {
-        newChildren = new Children();
+        targetChildren = new Children();
         showChildrenInputs();
         newChildrenToggle = !newChildrenToggle;
     } else {
-        childrens.push(newChildren);
+        childrens.push(targetChildren);
         showChildrenInputs();
         renderChildrenList();
         newChildrenToggle = !newChildrenToggle;
     }
-
 });
-// function newChildren(){};
 
 childrenLastNameInput.addEventListener("input", function () {
-    newChildren.setLastName(childrenLastNameInput.value)
+    targetChildren.setLastName(childrenLastNameInput.value)
 });
 childrenFirstNameInput.addEventListener("input", function () {
-    newChildren.setFirstName(childrenFirstNameInput.value)
+    targetChildren.setFirstName(childrenFirstNameInput.value)
 });
 childrenPatronymicInput.addEventListener("input", function () {
-    newChildren.setPatronymic(childrenPatronymicInput.value)
+    targetChildren.setPatronymic(childrenPatronymicInput.value)
 });
 childrenBirthdayInput.addEventListener("input", function () {
-    newChildren.setBirthday(childrenBirthdayInput.value)
+    targetChildren.setBirthday(childrenBirthdayInput.value)
 });
 childrenSchoolInput.addEventListener("input", function () {
-    newChildren.setSchool(childrenSchoolInput.value)
+    targetChildren.setSchool(childrenSchoolInput.value)
 });
 childrenClassNumberInput.addEventListener("input", function () {
-    newChildren.setClassNumber(childrenClassNumberInput.value)
+    targetChildren.setClassNumber(childrenClassNumberInput.value)
 });
 childrenPlaceOfStudyInput.addEventListener("input", function () {
-    newChildren.setPlaceOfStudy(childrenPlaceOfStudyInput.value)
+    targetChildren.setPlaceOfStudy(childrenPlaceOfStudyInput.value)
 });
 childrenHomeNumberInput.addEventListener("input", function () {
-    newChildren.setHomeNumber(childrenHomeNumberInput.value)
+    targetChildren.setHomeNumber(childrenHomeNumberInput.value)
 });
 childrenMobileNumberInput.addEventListener("input", function () {
-    newChildren.setMobileNumber(childrenMobileNumberInput.value)
+    targetChildren.setMobileNumber(childrenMobileNumberInput.value)
 });
 childrenVillageCouncilInput.addEventListener("input", function () {
-    newChildren.setVillageCouncil(childrenVillageCouncilInput.value)
+    targetChildren.setVillageCouncil(childrenVillageCouncilInput.value)
 });
 childrenLocalityInput.addEventListener("input", function () {
-    newChildren.setLocality(childrenLocalityInput.value)
+    targetChildren.setLocality(childrenLocalityInput.value)
 });
 childrenAddressInput.addEventListener("input", function () {
-    newChildren.setAddress(childrenAddressInput.value)
+    targetChildren.setAddress(childrenAddressInput.value)
 });
 childrenNotesInput.addEventListener("input", function () {
-    newChildren.setNotes(childrenNotesInput.value)
+    targetChildren.setNotes(childrenNotesInput.value)
 });
 childrenNormInput.addEventListener("input", function () {
-    newChildren.setNorm(childrenNormInput.value)
+    targetChildren.setNorm(childrenNormInput.value)
+});
+
+let targetTrustee;
+let newTrusteeToggle=true;
+let targetTrusteeButton = document.getElementById("newTrusteeButton");
+targetTrusteeButton.addEventListener("click", function () {
+    if (newTrusteeToggle) {
+        showTrusteeInputs();
+        targetTrustee=new Trustee(trustees);
+        newTrusteeToggle = !newTrusteeToggle;
+    } else {
+        targetChildren.trustees.addTruste(targetTrustee.getId());
+        showTrusteeInputs();
+        newTrusteeToggle = !newTrusteeToggle;
+    }
 });
 
 // Список детей
@@ -98,9 +113,18 @@ function renderChildrenList() {
 
         });
 
-        childrenItem.appendChild(newButton("change"));
+        let changeButton=newButton("change");
+
+        changeButton.addEventListener("click", function () {
+            
+            renderChildrenList();
+            event.stopPropagation();
+
+        });
+
         childrenItem.appendChild(newButton("to_list"));
         childrenItem.appendChild(deleteButton);
+        childrenItem.appendChild(changeButton);
 
 
         childrenItem.addEventListener("click", function () {

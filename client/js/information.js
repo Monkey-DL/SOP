@@ -91,6 +91,7 @@ let childrenNotesInput = document.getElementById("childrenNotesInput");
 
 
 let childrenTrusteeList = document.getElementById("childrenTrusteeList");
+let newTrusteeButton = document.getElementById("newTrusteeButton");
 
 
 function showTrusteeInfo(trustees, index) {
@@ -114,13 +115,38 @@ function showTrusteeInfo(trustees, index) {
     trusteeNotes.innerHTML = trustees[index].getNotes();
 }
 
+function showTrusteeInputs() {
+    trusteeLastNameInput.classList.toggle("displaynone");
+    trusteeFirstNameInput.classList.toggle("displaynone");
+    trusteePatronymicInput.classList.toggle("displaynone");
+    trusteeBirthdayInput.classList.toggle("displaynone");
+    trusteeRelationsInput.classList.toggle("displaynone");
+
+    trusteeHomeNumberInput.classList.toggle("displaynone");
+    trusteeMobileNumberInput.classList.toggle("displaynone");
+    trusteeWorkNumberInput.classList.toggle("displaynone");
+    trusteeEmailInput.classList.toggle("displaynone");
+
+    trusteeDistrictInput.classList.toggle("displaynone");
+    trusteeVillageCouncilInput.classList.toggle("displaynone");
+    trusteeLocalityInput.classList.toggle("displaynone");
+    trusteeAddressInput.classList.toggle("displaynone");
+    trusteeIndexInput.classList.toggle("displaynone");
+
+    trusteeWorkInput.classList.toggle("displaynone");
+    trusteePositionInput.classList.toggle("displaynone");
+    trusteeCurrentEmploymentInput.classList.toggle("displaynone");
+
+    trusteeNotesInput.classList.toggle("displaynone");
+}
+
 function newButton(className) {
     let Button = document.createElement("div");
     Button.classList = "button " + className;
     return Button;
 }
 
-function showChildrenInfo(childrens, index) {
+function showChildrenInfo(childrens, index,trustees) {
     childrenLastName.innerHTML = childrens[index].getLastName();
     childrenFirstName.innerHTML = childrens[index].getFirstName();
     childrenPatronymic.innerHTML = childrens[index].getPatronymic();
@@ -142,7 +168,7 @@ function showChildrenInfo(childrens, index) {
 
     childrenNotes.innerHTML = childrens[index].getNotes();
 
-    let childresTrustees = childrens[index].getTrustees();
+    let childrensTrustees = childrens[index].getTrustees();
 
 
     if (childrenTrusteeList.children.length > 0) {
@@ -150,11 +176,10 @@ function showChildrenInfo(childrens, index) {
             childrenTrusteeList.removeChild(childrenTrusteeList.children[i]);
         }
     }
-
-    for (let i = 0; i < childresTrustees.length; i++) {
+    for (let i = 0; i < childrensTrustees.length; i++) {
         let childrenTrusteItem = document.createElement("div");
         childrenTrusteItem.classList = "trustee_list_item";
-        childrenTrusteItem.setAttribute("data-index", i);
+        childrenTrusteItem.setAttribute("data-index", new Trustee().get);
 
         let childrenItemText = document.createElement("span");
         childrenItemText.innerHTML = trustees[i].getStatus();
@@ -215,4 +240,8 @@ function showChildrenInputs() {
     childrenVillageCouncil.classList.toggle("displaynone");
     childrenLocality.classList.toggle("displaynone");
     childrenAddress.classList.toggle("displaynone");
+
+    childrenNotes.classList.toggle("displaynone");
+
+    newTrusteeButton.classList.toggle("displaynone");
 }

@@ -3,6 +3,7 @@
 $fonColor: #fff;
 $listFon: #5b85d4;
 $cardColor: #739dec;
+$hoverColor: #96b9fa;
 
 
 * {
@@ -14,7 +15,7 @@ $cardColor: #739dec;
     height: 100vh;
     background-color: $fonColor;
     font-family: 'Roboto Regular';
-    font-size:14px;
+    font-size: 14px;
     box-sizing: border-box;
     padding: 10px;
     display: grid;
@@ -58,20 +59,21 @@ h2 {
     color: #000;
     background-size: 1em;
 }
+
 input {
     display: block;
     height: 20px;
     background: $cardColor;
     border: none;
     border-bottom: 2px solid #000;
-    width:100%;
+    width: 100%;
 
     &:focus {
         outline: 0;
     }
 }
 
-.displaynone{
+.displaynone {
     display: none;
 }
 
@@ -85,6 +87,7 @@ input {
         background-color: $cardColor;
         border-radius: 5px;
     }
+
     #newChildrenButton {
         box-sizing: border-box;
         padding: 5px;
@@ -93,6 +96,10 @@ input {
         background-color: $cardColor;
         border-radius: 5px;
         cursor: default;
+
+        &:hover {
+            background-color: $hoverColor;
+        }
     }
 
     .children_list {
@@ -122,6 +129,7 @@ input {
                 overflow: hidden;
                 cursor: default;
             }
+
             &:nth-child(2n) {
                 background-color: $listFon;
             }
@@ -177,6 +185,20 @@ input {
 
     .trustee {
         grid-area: trustee;
+
+        #newTrusteeButton {
+            box-sizing: border-box;
+            padding: 5px;
+            margin: 5px;
+            width: 100%;
+            text-align: center;
+            background-color: $listFon;
+            border-radius: 5px;
+            cursor: default;
+            &:hover{
+                background-color: $hoverColor;
+            }
+        }
     }
 
     .note {
@@ -185,9 +207,9 @@ input {
     }
 
     .trustee_list {
-        height: 80%;
+        height: 65%;
         overflow-y: auto;
-        padding:5px;
+        padding: 5px;
 
 
         &_item {
@@ -203,7 +225,7 @@ input {
                 cursor: default;
             }
 
-            
+
 
             &:nth-child(2n) {
                 background-color: $listFon;

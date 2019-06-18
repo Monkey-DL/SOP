@@ -109,6 +109,10 @@ input:focus {
   cursor: default;
 }
 
+.childrens #newChildrenButton:hover {
+  background-color: #96b9fa;
+}
+
 .childrens .children_list {
   background-color: #739dec;
   height: 100%;
@@ -206,6 +210,22 @@ input:focus {
   grid-area: trustee;
 }
 
+.children_info .trustee #newTrusteeButton {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  margin: 5px;
+  width: 100%;
+  text-align: center;
+  background-color: #5b85d4;
+  border-radius: 5px;
+  cursor: default;
+}
+
+.children_info .trustee #newTrusteeButton:hover {
+  background-color: #96b9fa;
+}
+
 .children_info .note {
   -ms-grid-row: 4;
   -ms-grid-column: 2;
@@ -213,7 +233,7 @@ input:focus {
 }
 
 .children_info .trustee_list {
-  height: 80%;
+  height: 65%;
   overflow-y: auto;
   padding: 5px;
 }
