@@ -129,7 +129,7 @@ class Children {
         return this.lastName + " " + this.firstName;
     };
 
-    addTruste(trusteeIndex) {
+    addTrustee(trusteeIndex) {
         this.trustees.push(trusteeIndex);
     }
 

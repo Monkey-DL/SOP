@@ -1,30 +1,27 @@
 let childrens = [];
 let trustees = [];
 
-for (let i = 0; i < 10; i++) {
-    trustees.push(new Trustee(trustees));
-    console.log(trustees[i]);
-    
-};
+
 
 
 for (let i = 0; i < 2; i++) {
     childrens.push(new Children());
-    for (let j = 0; j < 2; j++) {
-        childrens[i].addTruste(i);
-    };
 };
 
 let childrenList = document.getElementById("childrenList");
 
-let targetChildren;
+
+// Добавление ребёнка
+var targetChildren;
 let newChildrenToggle = true;
 let targetChildrenButton = document.getElementById("newChildrenButton");
 targetChildrenButton.addEventListener("click", function () {
+    targetChildrenButton.classList.toggle("button_Toggle");
     if (newChildrenToggle) {
         targetChildren = new Children();
         showChildrenInputs();
         newChildrenToggle = !newChildrenToggle;
+        
     } else {
         childrens.push(targetChildren);
         showChildrenInputs();
@@ -32,7 +29,7 @@ targetChildrenButton.addEventListener("click", function () {
         newChildrenToggle = !newChildrenToggle;
     }
 });
-
+// Поля ввода данных ребёнка
 childrenLastNameInput.addEventListener("input", function () {
     targetChildren.setLastName(childrenLastNameInput.value)
 });
@@ -76,19 +73,83 @@ childrenNormInput.addEventListener("input", function () {
     targetChildren.setNorm(childrenNormInput.value)
 });
 
+
+// Добавление опекуна
+
 let targetTrustee;
-let newTrusteeToggle=true;
+let newTrusteeToggle = true;
 let targetTrusteeButton = document.getElementById("newTrusteeButton");
 targetTrusteeButton.addEventListener("click", function () {
+    targetTrusteeButton.classList.toggle("button_Toggle");
     if (newTrusteeToggle) {
         showTrusteeInputs();
-        targetTrustee=new Trustee(trustees);
+        targetTrustee = new Trustee(trustees);
         newTrusteeToggle = !newTrusteeToggle;
     } else {
-        targetChildren.trustees.addTruste(targetTrustee.getId());
+        targetChildren.addTrustee(targetTrustee.getId());
+        trustees.push(targetTrustee);
         showTrusteeInputs();
         newTrusteeToggle = !newTrusteeToggle;
     }
+});
+
+
+trusteeStatusInput.addEventListener("input", function () {
+    targetTrustee.setStatus(trusteeStatusInput.value)
+});
+trusteeLastNameInput.addEventListener("input", function () {
+    targetTrustee.setLastName(trusteeLastNameInput.value);
+});
+trusteeFirstNameInput.addEventListener("input", function () {
+    targetTrustee.setFirstName(trusteeFirstNameInput.value);
+});
+trusteePatronymicInput.addEventListener("input", function () {
+    targetTrustee.setPatronymic(trusteePatronymicInput.value);
+});
+trusteeBirthdayInput.addEventListener("input", function () {
+    targetTrustee.setBirthday(trusteeBirthdayInput.value);
+});
+trusteeRelationsInput.addEventListener("input", function () {
+    targetTrustee.setRelations(trusteeRelationsInput.value);
+});
+trusteeHomeNumberInput.addEventListener("input", function () {
+    targetTrustee.setHomeNumber(trusteeHomeNumberInput.value);
+});
+trusteeMobileNumberInput.addEventListener("input", function () {
+    targetTrustee.setMobileNumber(trusteeMobileNumberInput.value);
+});
+trusteeWorkNumberInput.addEventListener("input", function () {
+    targetTrustee.setWorkNumber(trusteeWorkNumberInput.value);
+});
+trusteeEmailInput.addEventListener("input", function () {
+    targetTrustee.setEmail(trusteeEmailInput.value);
+});
+trusteeDistrictInput.addEventListener("input", function () {
+    targetTrustee.setDistrict(trusteeDistrictInput.value);
+});
+trusteeVillageCouncilInput.addEventListener("input", function () {
+    targetTrustee.setVillageCouncil(trusteeVillageCouncilInput.value);
+});
+trusteeLocalityInput.addEventListener("input", function () {
+    targetTrustee.setLocality(trusteeLocalityInput.value);
+});
+trusteeAddressInput.addEventListener("input", function () {
+    targetTrustee.setAddress(trusteeAddressInput.value);
+});
+trusteeIndexInput.addEventListener("input", function () {
+    targetTrustee.setIndex(trusteeIndexInput.value);
+});
+trusteeWorkInput.addEventListener("input", function () {
+    targetTrustee.setWork(trusteeWorkInput.value);
+});
+trusteePositionInput.addEventListener("input", function () {
+    targetTrustee.setPosition(trusteePositionInput.value);
+});
+trusteeCurrentEmploymentInput.addEventListener("input", function () {
+    targetTrustee.setCurrentEmployment(trusteeCurrentEmploymentInput.value);
+});
+trusteeNotesInput.addEventListener("input", function () {
+    targetTrustee.setNotes(trusteeNotesInput.value);
 });
 
 // Список детей
@@ -113,22 +174,24 @@ function renderChildrenList() {
 
         });
 
-        let changeButton=newButton("change");
+        let changeButton = newButton("change");
 
         changeButton.addEventListener("click", function () {
-            
+
             renderChildrenList();
             event.stopPropagation();
 
         });
 
         childrenItem.appendChild(newButton("to_list"));
-        childrenItem.appendChild(deleteButton);
         childrenItem.appendChild(changeButton);
-
+        childrenItem.appendChild(deleteButton);
 
         childrenItem.addEventListener("click", function () {
-            showChildrenInfo(childrens, childrenItem.getAttribute("data-index"));
+            targetChildren=childrenItem.getAttribute("data-index");
+            
+            showChildrenInfo(childrens, targetChildren, trustees)
+            clearTrusteeInfo();
         });
 
         childrenList.appendChild(childrenItem);

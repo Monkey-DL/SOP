@@ -4,6 +4,7 @@ $fonColor: #fff;
 $listFon: #5b85d4;
 $cardColor: #739dec;
 $hoverColor: #96b9fa;
+$buttonToggleColor: #459045;
 
 
 * {
@@ -102,6 +103,10 @@ input {
         }
     }
 
+    .button_Toggle{
+        background-color: $buttonToggleColor;
+    }
+
     .children_list {
         background-color: $cardColor;
         height: 100%;
@@ -185,11 +190,9 @@ input {
 
     .trustee {
         grid-area: trustee;
-
         #newTrusteeButton {
             box-sizing: border-box;
             padding: 5px;
-            margin: 5px;
             width: 100%;
             text-align: center;
             background-color: $listFon;

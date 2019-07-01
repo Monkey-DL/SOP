@@ -113,6 +113,10 @@ input:focus {
   background-color: #96b9fa;
 }
 
+.childrens .button_Toggle {
+  background-color: #459045;
+}
+
 .childrens .children_list {
   background-color: #739dec;
   height: 100%;
@@ -214,7 +218,6 @@ input:focus {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 5px;
-  margin: 5px;
   width: 100%;
   text-align: center;
   background-color: #5b85d4;

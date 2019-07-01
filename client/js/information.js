@@ -48,6 +48,7 @@ let trusteeNotesInput = document.getElementById("trusteeNotes");
 
 
 // Дети поля для отображеня информации
+let childrenStatus = document.getElementById("childrenStatus");
 let childrenLastName = document.getElementById("childrenLastName");
 let childrenFirstName = document.getElementById("childrenFirstName");
 let childrenPatronymic = document.getElementById("childrenPatronymic");
@@ -69,6 +70,7 @@ let childrenAddress = document.getElementById("childrenAddress");
 let childrenNotes = document.getElementById("childrenNotes");
 
 // Дети текстовые поля
+let childrenStatusInput = document.getElementById("childrenStatusInput");
 let childrenLastNameInput = document.getElementById("childrenLastNameInput");
 let childrenFirstNameInput = document.getElementById("childrenFirstNameInput");
 let childrenPatronymicInput = document.getElementById("childrenPatronymicInput");
@@ -95,6 +97,7 @@ let newTrusteeButton = document.getElementById("newTrusteeButton");
 
 
 function showTrusteeInfo(trustees, index) {
+    trusteeStatus.innerHTML = trustees[index].getStatus();
     trusteeLastName.innerHTML = trustees[index].getLastName();
     trusteeFirstName.innerHTML = trustees[index].getFirstName();
     trusteePatronymic.innerHTML = trustees[index].getPatronymic();
@@ -115,7 +118,30 @@ function showTrusteeInfo(trustees, index) {
     trusteeNotes.innerHTML = trustees[index].getNotes();
 }
 
+function clearTrusteeInfo() {
+    trusteeStatus.innerHTML = "";
+    trusteeLastName.innerHTML = "";
+    trusteeFirstName.innerHTML = "";
+    trusteePatronymic.innerHTML = "";
+    trusteeBirthday.innerHTML = "";
+    trusteeRelations.innerHTML = "";
+    trusteeHomeNumber.innerHTML = "";
+    trusteeMobileNumber.innerHTML = "";
+    trusteeWorkNumber.innerHTML = "";
+    trusteeEmail.innerHTML = "";
+    trusteeDistrict.innerHTML = "";
+    trusteeVillageCouncil.innerHTML = "";
+    trusteeLocality.innerHTML = "";
+    trusteeAddress.innerHTML = "";
+    trusteeIndex.innerHTML = "";
+    trusteeWork.innerHTML = "";
+    trusteePosition.innerHTML = "";
+    trusteeCurrentEmployment.innerHTML = "";
+    trusteeNotes.innerHTML = "";
+}
+
 function showTrusteeInputs() {
+    trusteeStatusInput.classList.toggle("displaynone");
     trusteeLastNameInput.classList.toggle("displaynone");
     trusteeFirstNameInput.classList.toggle("displaynone");
     trusteePatronymicInput.classList.toggle("displaynone");
@@ -138,6 +164,31 @@ function showTrusteeInputs() {
     trusteeCurrentEmploymentInput.classList.toggle("displaynone");
 
     trusteeNotesInput.classList.toggle("displaynone");
+
+
+    trusteeStatus.classList.toggle("displaynone");
+    trusteeLastName.classList.toggle("displaynone");
+    trusteeFirstName.classList.toggle("displaynone");
+    trusteePatronymic.classList.toggle("displaynone");
+    trusteeBirthday.classList.toggle("displaynone");
+    trusteeRelations.classList.toggle("displaynone");
+
+    trusteeHomeNumber.classList.toggle("displaynone");
+    trusteeMobileNumber.classList.toggle("displaynone");
+    trusteeWorkNumber.classList.toggle("displaynone");
+    trusteeEmail.classList.toggle("displaynone");
+
+    trusteeDistrict.classList.toggle("displaynone");
+    trusteeVillageCouncil.classList.toggle("displaynone");
+    trusteeLocality.classList.toggle("displaynone");
+    trusteeAddress.classList.toggle("displaynone");
+    trusteeIndex.classList.toggle("displaynone");
+
+    trusteeWork.classList.toggle("displaynone");
+    trusteePosition.classList.toggle("displaynone");
+    trusteeCurrentEmployment.classList.toggle("displaynone");
+
+    trusteeNotes.classList.toggle("displaynone");
 }
 
 function newButton(className) {
@@ -146,7 +197,7 @@ function newButton(className) {
     return Button;
 }
 
-function showChildrenInfo(childrens, index,trustees) {
+function showChildrenInfo(childrens, index, trustees) {
     childrenLastName.innerHTML = childrens[index].getLastName();
     childrenFirstName.innerHTML = childrens[index].getFirstName();
     childrenPatronymic.innerHTML = childrens[index].getPatronymic();
@@ -179,14 +230,30 @@ function showChildrenInfo(childrens, index,trustees) {
     for (let i = 0; i < childrensTrustees.length; i++) {
         let childrenTrusteItem = document.createElement("div");
         childrenTrusteItem.classList = "trustee_list_item";
-        childrenTrusteItem.setAttribute("data-index", new Trustee().get);
+        childrenTrusteItem.setAttribute("data-index", childrensTrustees[i]);
+        childrenTrusteItem.setAttribute("data-children-index", index);
 
         let childrenItemText = document.createElement("span");
-        childrenItemText.innerHTML = trustees[i].getStatus();
+        childrenItemText.innerHTML = trustees[childrensTrustees[i]].getStatus();
         childrenTrusteItem.appendChild(childrenItemText);
 
         childrenTrusteItem.appendChild(newButton("change"));
-        childrenTrusteItem.appendChild(newButton("delete"));
+
+        let deleteButton=newButton("delete");
+        deleteButton.addEventListener("click",function(){
+            console.log(childrensTrustees);
+            for(let j=0;j<childrensTrustees.length;j++){
+                if(childrensTrustees[j]==this.parentNode.getAttribute("data-index")){
+                    childrensTrustees.splice(j,1);console.log(childrensTrustees);
+                    break;
+                    
+                    
+                }
+            }
+            this.parentNode.parentNode.removeChild(this.parentNode);
+        });
+
+        childrenTrusteItem.appendChild(deleteButton);
 
         childrenTrusteItem.addEventListener("click", function () {
             showTrusteeInfo(trustees, childrenTrusteItem.getAttribute("data-index"));
