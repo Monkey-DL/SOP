@@ -48,7 +48,6 @@ let trusteeNotesInput = document.getElementById("trusteeNotes");
 
 
 // Дети поля для отображеня информации
-let childrenStatus = document.getElementById("childrenStatus");
 let childrenLastName = document.getElementById("childrenLastName");
 let childrenFirstName = document.getElementById("childrenFirstName");
 let childrenPatronymic = document.getElementById("childrenPatronymic");
@@ -70,7 +69,6 @@ let childrenAddress = document.getElementById("childrenAddress");
 let childrenNotes = document.getElementById("childrenNotes");
 
 // Дети текстовые поля
-let childrenStatusInput = document.getElementById("childrenStatusInput");
 let childrenLastNameInput = document.getElementById("childrenLastNameInput");
 let childrenFirstNameInput = document.getElementById("childrenFirstNameInput");
 let childrenPatronymicInput = document.getElementById("childrenPatronymicInput");
@@ -87,35 +85,47 @@ let childrenVillageCouncilInput = document.getElementById("childrenVillageCounci
 let childrenLocalityInput = document.getElementById("childrenLocalityInput");
 let childrenAddressInput = document.getElementById("childrenAddressInput");
 
-let childrenchildrenNormInput = document.getElementById("schildrenNormInput");
+let childrenNormInput = document.getElementById("childrenNormInput");
 
 let childrenNotesInput = document.getElementById("childrenNotesInput");
 
 
 let childrenTrusteeList = document.getElementById("childrenTrusteeList");
 let newTrusteeButton = document.getElementById("newTrusteeButton");
+let confirmChangesTrusteeButton = document.getElementById("confirmChangesTrustee");
+let confirmChangesChildrenButton = document.getElementById("confirmChangesChildren");
 
+function newButton(className) {
+    let Button = document.createElement("div");
+    Button.classList = "button " + className;
+    return Button;
+}
 
 function showTrusteeInfo(trustees, index) {
-    trusteeStatus.innerHTML = trustees[index].getStatus();
-    trusteeLastName.innerHTML = trustees[index].getLastName();
-    trusteeFirstName.innerHTML = trustees[index].getFirstName();
-    trusteePatronymic.innerHTML = trustees[index].getPatronymic();
-    trusteeBirthday.innerHTML = trustees[index].getBirthday();
-    trusteeRelations.innerHTML = trustees[index].getRelations();
-    trusteeHomeNumber.innerHTML = trustees[index].getHomeNumber();
-    trusteeMobileNumber.innerHTML = trustees[index].getMobileNumber();
-    trusteeWorkNumber.innerHTML = trustees[index].getWorkNumber();
-    trusteeEmail.innerHTML = trustees[index].getEmail();
-    trusteeDistrict.innerHTML = trustees[index].getDistrict();
-    trusteeVillageCouncil.innerHTML = trustees[index].getVillageCouncil();
-    trusteeLocality.innerHTML = trustees[index].getLocality();
-    trusteeAddress.innerHTML = trustees[index].getAddress();
-    trusteeIndex.innerHTML = trustees[index].getIndex();
-    trusteeWork.innerHTML = trustees[index].getWork();
-    trusteePosition.innerHTML = trustees[index].getPosition();
-    trusteeCurrentEmployment.innerHTML = trustees[index].getCurrentEmployment();
-    trusteeNotes.innerHTML = trustees[index].getNotes();
+    trustees.forEach(trustee => {
+        if (trustee.getId() == index) {
+            trusteeStatus.innerHTML = trustee.getStatus();
+            trusteeLastName.innerHTML = trustee.getLastName();
+            trusteeFirstName.innerHTML = trustee.getFirstName();
+            trusteePatronymic.innerHTML = trustee.getPatronymic();
+            trusteeBirthday.innerHTML = trustee.getBirthday();
+            trusteeRelations.innerHTML = trustee.getRelations();
+            trusteeHomeNumber.innerHTML = trustee.getHomeNumber();
+            trusteeMobileNumber.innerHTML = trustee.getMobileNumber();
+            trusteeWorkNumber.innerHTML = trustee.getWorkNumber();
+            trusteeEmail.innerHTML = trustee.getEmail();
+            trusteeDistrict.innerHTML = trustee.getDistrict();
+            trusteeVillageCouncil.innerHTML = trustee.getVillageCouncil();
+            trusteeLocality.innerHTML = trustee.getLocality();
+            trusteeAddress.innerHTML = trustee.getAddress();
+            trusteeIndex.innerHTML = trustee.getIndex();
+            trusteeWork.innerHTML = trustee.getWork();
+            trusteePosition.innerHTML = trustee.getPosition();
+            trusteeCurrentEmployment.innerHTML = trustee.getCurrentEmployment();
+            trusteeNotes.innerHTML = trustee.getNotes();
+        }
+    });
+
 }
 
 function clearTrusteeInfo() {
@@ -138,6 +148,64 @@ function clearTrusteeInfo() {
     trusteePosition.innerHTML = "";
     trusteeCurrentEmployment.innerHTML = "";
     trusteeNotes.innerHTML = "";
+    clearTrusteeList()
+}
+
+function fillTrusteeInputs(trustees, index) {
+    trustees.forEach(trustee => {
+        if (trustee.getId() == index) {
+            trusteeStatusInput.value = trustee.getStatus();
+            trusteeLastNameInput.value = trustee.getLastName();
+            trusteeFirstNameInput.value = trustee.getFirstName();
+            trusteePatronymicInput.value = trustee.getPatronymic();
+            trusteeBirthdayInput.value = trustee.getBirthday();
+            trusteeRelationsInput.value = trustee.getRelations();
+
+            trusteeHomeNumberInput.value = trustee.getHomeNumber();
+            trusteeMobileNumberInput.value = trustee.getMobileNumber();
+            trusteeWorkNumberInput.value = trustee.getWorkNumber();
+            trusteeEmailInput.value = trustee.getEmail();
+
+            trusteeDistrictInput.value = trustee.getDistrict();
+            trusteeVillageCouncilInput.value = trustee.getVillageCouncil();
+            trusteeLocalityInput.value = trustee.getLocality();
+            trusteeAddressInput.value = trustee.getAddress();
+            trusteeIndexInput.value = trustee.getIndex();
+
+            trusteeWorkInput.value = trustee.getWork();
+            trusteePositionInput.value = trustee.getPosition();
+            trusteeCurrentEmploymentInput.value = trustee.getCurrentEmployment();
+
+            // trusteeNotesInput.value = trustee.getNotes();
+        }
+    });
+}
+
+function clearTrusteeInputs(trustees, index) {
+
+    trusteeStatusInput.value = "";
+    trusteeLastNameInput.value = "";
+    trusteeFirstNameInput.value = "";
+    trusteePatronymicInput.value = "";
+    trusteeBirthdayInput.value = "";
+    trusteeRelationsInput.value = "";
+
+    trusteeHomeNumberInput.value = "";
+    trusteeMobileNumberInput.value = "";
+    trusteeWorkNumberInput.value = "";
+    trusteeEmailInput.value = "";
+
+    trusteeDistrictInput.value = "";
+    trusteeVillageCouncilInput.value = "";
+    trusteeLocalityInput.value = "";
+    trusteeAddressInput.value = "";
+    trusteeIndexInput.value = "";
+
+    trusteeWorkInput.value = "";
+    trusteePositionInput.value = "";
+    trusteeCurrentEmploymentInput.value = "";
+
+    // trusteeNotesInput.value = "";
 }
 
 function showTrusteeInputs() {
@@ -191,86 +259,90 @@ function showTrusteeInputs() {
     trusteeNotes.classList.toggle("displaynone");
 }
 
-function newButton(className) {
-    let Button = document.createElement("div");
-    Button.classList = "button " + className;
-    return Button;
-}
-
-function showChildrenInfo(childrens, index, trustees) {
-    childrenLastName.innerHTML = childrens[index].getLastName();
-    childrenFirstName.innerHTML = childrens[index].getFirstName();
-    childrenPatronymic.innerHTML = childrens[index].getPatronymic();
-    childrenBirthday.innerHTML = childrens[index].getBirthday();
-
-    childrenSchool.innerHTML = childrens[index].getSchool();
-    childrenClassNumber.innerHTML = childrens[index].getClassNumber();
-    childrenPlaceOfStudy.innerHTML = childrens[index].getPlaceOfStudy();
-
-    childrenHomeNumber.innerHTML = childrens[index].getHomeNumber();
-    childrenMobileNumber.innerHTML = childrens[index].getMobileNumber();
-
-    childrenVillageCouncil.innerHTML = childrens[index].getVillageCouncil();
-    childrenLocality.innerHTML = childrens[index].getLocality();
-    childrenAddress.innerHTML = childrens[index].getAddress();
-    childrenNorm.innerHTML = childrens[index].getNorm();
-
-
-
-    childrenNotes.innerHTML = childrens[index].getNotes();
-
-    let childrensTrustees = childrens[index].getTrustees();
-
-
+function clearTrusteeList() {
     if (childrenTrusteeList.children.length > 0) {
         for (let i = childrenTrusteeList.children.length - 1; i >= 0; i--) {
             childrenTrusteeList.removeChild(childrenTrusteeList.children[i]);
         }
     }
-    for (let i = 0; i < childrensTrustees.length; i++) {
-        let childrenTrusteItem = document.createElement("div");
-        childrenTrusteItem.classList = "trustee_list_item";
-        childrenTrusteItem.setAttribute("data-index", childrensTrustees[i]);
-        childrenTrusteItem.setAttribute("data-children-index", index);
-
-        let childrenItemText = document.createElement("span");
-        childrenItemText.innerHTML = trustees[childrensTrustees[i]].getStatus();
-        childrenTrusteItem.appendChild(childrenItemText);
-
-        childrenTrusteItem.appendChild(newButton("change"));
-
-        let deleteButton=newButton("delete");
-        deleteButton.addEventListener("click",function(){
-            console.log(childrensTrustees);
-            for(let j=0;j<childrensTrustees.length;j++){
-                if(childrensTrustees[j]==this.parentNode.getAttribute("data-index")){
-                    childrensTrustees.splice(j,1);console.log(childrensTrustees);
-                    break;
-                    
-                    
-                }
-            }
-            this.parentNode.parentNode.removeChild(this.parentNode);
-        });
-
-        childrenTrusteItem.appendChild(deleteButton);
-
-        childrenTrusteItem.addEventListener("click", function () {
-            showTrusteeInfo(trustees, childrenTrusteItem.getAttribute("data-index"));
-        });
-
-        childrenTrusteeList.appendChild(childrenTrusteItem);
-
-    }
 }
 
-function clearChildrenList() {
-    if (childrenList.children.length > 0) {
-        for (let i = childrenList.children.length - 1; i >= 0; i--) {
-            childrenList.removeChild(childrenList.children[i]);
-        }
-    }
+
+
+function showChildrenInfo(children, trustees) {
+    childrenLastName.innerHTML = children.getLastName();
+    childrenFirstName.innerHTML = children.getFirstName();
+    childrenPatronymic.innerHTML = children.getPatronymic();
+    childrenBirthday.innerHTML = children.getBirthday();
+
+    childrenSchool.innerHTML = children.getSchool();
+    childrenClassNumber.innerHTML = children.getClassNumber();
+    childrenPlaceOfStudy.innerHTML = children.getPlaceOfStudy();
+
+    childrenHomeNumber.innerHTML = children.getHomeNumber();
+    childrenMobileNumber.innerHTML = children.getMobileNumber();
+
+    childrenVillageCouncil.innerHTML = children.getVillageCouncil();
+    childrenLocality.innerHTML = children.getLocality();
+    childrenAddress.innerHTML = children.getAddress();
+    childrenNorm.innerHTML = children.getNorm();
+
+
+    childrenNotes.innerHTML = children.getNotes();
+
+    let childrenTrustees = children.getTrustees();
+
+    renderTrusteeList(childrenTrustees, children.getId(), trustees);
 }
+
+function clearChildrenInfo() {
+    childrenLastName.innerHTML = "";
+    childrenFirstName.innerHTML = "";
+    childrenPatronymic.innerHTML = "";
+    childrenBirthday.innerHTML = "";
+
+    childrenSchool.innerHTML = "";
+    childrenClassNumber.innerHTML = "";
+    childrenPlaceOfStudy.innerHTML = "";
+
+    childrenHomeNumber.innerHTML = "";
+    childrenMobileNumber.innerHTML = "";
+
+    childrenVillageCouncil.innerHTML = "";
+    childrenLocality.innerHTML = "";
+    childrenAddress.innerHTML = "";
+    childrenNorm.innerHTML = "";
+
+    childrenNotes.innerHTML = "";
+
+    clearTrusteeList();
+}
+
+function fillChildrenInputs(children, trustees) {
+    childrenLastNameInput.value = children.getLastName();
+    childrenFirstNameInput.value = children.getFirstName();
+    childrenPatronymicInput.value = children.getPatronymic();
+    childrenBirthdayInput.value = children.getBirthday();
+
+    childrenSchoolInput.value = children.getSchool();
+    childrenClassNumberInput.value = children.getClassNumber();
+    childrenPlaceOfStudyInput.value = children.getPlaceOfStudy();
+
+    childrenHomeNumberInput.value = children.getHomeNumber();
+    childrenMobileNumberInput.value = children.getMobileNumber();
+
+    childrenVillageCouncilInput.value = children.getVillageCouncil();
+    childrenLocalityInput.value = children.getLocality();
+    childrenAddressInput.value = children.getAddress();
+
+    childrenNormInput.value = children.getNorm();
+
+    childrenNotesInput.value = children.getNotes();
+
+    renderTrusteeList(children.getTrustees(), children.getId(), trustees);
+}
+
+
 
 function showChildrenInputs() {
     childrenLastNameInput.classList.toggle("displaynone");
@@ -311,4 +383,12 @@ function showChildrenInputs() {
     childrenNotes.classList.toggle("displaynone");
 
     newTrusteeButton.classList.toggle("displaynone");
+}
+
+function clearChildrenList() {
+    if (childrenList.children.length > 0) {
+        for (let i = childrenList.children.length - 1; i >= 0; i--) {
+            childrenList.removeChild(childrenList.children[i]);
+        }
+    }
 }

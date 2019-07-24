@@ -1,5 +1,6 @@
 class Children {
-    constructor() {
+    constructor(childrens) {
+        this.id = 0;
         this.lastName;
         this.firstName;
         this.patronymic;
@@ -24,7 +25,17 @@ class Children {
         this.notes;
 
         this.trustees = [];
+
+        childrens.forEach(children => {
+            if (children.getId() >= this.id) {
+                this.id = children.getId() + 1;
+            }
+        });
     };
+
+    getId() {
+        return this.id;
+    }
 
     getLastName() {
         return this.lastName;
@@ -115,7 +126,7 @@ class Children {
         return this.norm;
     };
     setNorm(norm) {
-        this.norm =norm;
+        this.norm = norm;
     };
 
     getNotes() {

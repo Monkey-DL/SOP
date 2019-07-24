@@ -103,8 +103,19 @@ input {
         }
     }
 
-    .button_Toggle{
-        background-color: $buttonToggleColor;
+    .confirmChanges {
+        box-sizing: border-box;
+        padding: 5px;
+        width: 100%;
+        text-align: center;
+        border-radius: 5px;
+        margin: 2px;
+        cursor: default;
+        background-color: #459045;
+
+            &:hover {
+                background-color: #62af62;
+            }
     }
 
     .children_list {
@@ -190,16 +201,28 @@ input {
 
     .trustee {
         grid-area: trustee;
-        #newTrusteeButton {
+
+        #newTrusteeButton,
+        .confirmChanges {
             box-sizing: border-box;
             padding: 5px;
             width: 100%;
             text-align: center;
             background-color: $listFon;
             border-radius: 5px;
+            margin: 2px;
             cursor: default;
-            &:hover{
+
+            &:hover {
                 background-color: $hoverColor;
+            }
+        }
+
+        .confirmChanges {
+            background-color: #459045;
+
+            &:hover {
+                background-color: #62af62;
             }
         }
     }

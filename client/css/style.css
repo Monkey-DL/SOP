@@ -117,6 +117,22 @@ input:focus {
   background-color: #459045;
 }
 
+.childrens .confirmChanges {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+  margin: 2px;
+  cursor: default;
+  background-color: #459045;
+}
+
+.childrens .confirmChanges:hover {
+  background-color: #62af62;
+}
+
 .childrens .children_list {
   background-color: #739dec;
   height: 100%;
@@ -214,7 +230,8 @@ input:focus {
   grid-area: trustee;
 }
 
-.children_info .trustee #newTrusteeButton {
+.children_info .trustee #newTrusteeButton,
+.children_info .trustee .confirmChanges {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 5px;
@@ -222,11 +239,21 @@ input:focus {
   text-align: center;
   background-color: #5b85d4;
   border-radius: 5px;
+  margin: 2px;
   cursor: default;
 }
 
-.children_info .trustee #newTrusteeButton:hover {
+.children_info .trustee #newTrusteeButton:hover,
+.children_info .trustee .confirmChanges:hover {
   background-color: #96b9fa;
+}
+
+.children_info .trustee .confirmChanges {
+  background-color: #459045;
+}
+
+.children_info .trustee .confirmChanges:hover {
+  background-color: #62af62;
 }
 
 .children_info .note {
