@@ -16,7 +16,7 @@ $buttonToggleColor: #459045;
     height: 100vh;
     background-color: $fonColor;
     font-family: 'Roboto Regular';
-    font-size: 14px;
+    font-size: 13px;
     box-sizing: border-box;
     padding: 10px;
     display: grid;
@@ -63,7 +63,7 @@ h2 {
 
 input {
     display: block;
-    height: 20px;
+    height: 16px;
     background: $cardColor;
     border: none;
     border-bottom: 2px solid #000;
@@ -74,8 +74,40 @@ input {
     }
 }
 
-.displaynone {
-    display: none;
+.confirmChanges {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    margin: 2px;
+    cursor: default;
+
+    .confirm,
+    .cansel {
+        width: 50%;
+        padding: 5px;
+    }
+
+    .confirm {
+        background-color: #459045;
+        border-radius: 5px 0 0 5px;
+
+
+        &:hover {
+            background-color: #62af62;
+        }
+    }
+
+    .cansel {
+        background-color: #ff0000;
+        border-radius: 0 5px 5px 0;
+
+        &:hover {
+            background-color: #ff5555;
+        }
+    }
+
 }
 
 .childrens {
@@ -101,21 +133,6 @@ input {
         &:hover {
             background-color: $hoverColor;
         }
-    }
-
-    .confirmChanges {
-        box-sizing: border-box;
-        padding: 5px;
-        width: 100%;
-        text-align: center;
-        border-radius: 5px;
-        margin: 2px;
-        cursor: default;
-        background-color: #459045;
-
-            &:hover {
-                background-color: #62af62;
-            }
     }
 
     .children_list {
@@ -202,8 +219,7 @@ input {
     .trustee {
         grid-area: trustee;
 
-        #newTrusteeButton,
-        .confirmChanges {
+        #newTrusteeButton {
             box-sizing: border-box;
             padding: 5px;
             width: 100%;
@@ -218,13 +234,6 @@ input {
             }
         }
 
-        .confirmChanges {
-            background-color: #459045;
-
-            &:hover {
-                background-color: #62af62;
-            }
-        }
     }
 
     .note {
@@ -280,4 +289,8 @@ input {
     p {
         background-color: $listFon;
     }
+}
+
+.displaynone {
+    display: none;
 }

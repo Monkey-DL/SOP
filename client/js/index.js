@@ -9,37 +9,51 @@ let childrenList = document.getElementById("childrenList");
 let targetChildrenIndex;
 let targetChildren;
 
-let newChildrenToggle = true;
+let newChildrenToggle = false;
 let targetChildrenButton = document.getElementById("newChildrenButton");
 targetChildrenButton.addEventListener("click", function () {
-    targetChildrenButton.classList.toggle("button_Toggle");
+    targetChildrenButton.classList.toggle("displaynone");
+    confirmChangesChildrenButton.classList.toggle("displaynone");
     clearTrusteeInfo();
+    targetChildren = new Children(childrens);
+    showChildrenInputs();
+    newChildrenToggle = !newChildrenToggle;
+});
+
+confirmChildrenButton.addEventListener("click", function () {
     if (newChildrenToggle) {
-        targetChildren = new Children(childrens);
-        showChildrenInputs();
-        newChildrenToggle = !newChildrenToggle;
-    } else {
         childrens.push(targetChildren);
         showChildrenInfo(targetChildren, trustees);
         showChildrenInputs();
         renderChildrenList();
         newChildrenToggle = !newChildrenToggle;
         targetChildren = undefined;
-    }
-});
+    } else {
+        childrens.forEach(children => {
+            if (children.getId() == targetChildrenIndex) {
+                children.copyChildren(targetChildren);
+            }
+        });
+        clearChildrenInputs();
+        showChildrenInputs();
+        showChildrenInfo(targetChildren, trustees);
 
-confirmChangesChildrenButton.addEventListener("click", function () {
-    childrens.forEach(children => {
-        if (children.getId() == targetChildrenIndex) {
-            cgildren = targetTrustee;
-        }
-    });
-    // clearChildrenInputs();
-    showChildrenInputs();
-    showChildrenInfo(targetChildren,trustees);
+        renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
+        renderChildrenList();
+    }
     confirmChangesChildrenButton.classList.toggle("displaynone");
     targetChildrenButton.classList.toggle("displaynone");
-    renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
+});
+
+canselChildrenButton.addEventListener("click", function () {
+    if (newChildrenToggle) {
+        newChildrenToggle = !newChildrenToggle;
+    }
+    clearChildrenInputs();
+    showChildrenInputs();
+    confirmChangesChildrenButton.classList.toggle("displaynone");
+    targetChildrenButton.classList.toggle("displaynone");
+    renderChildrenList();
 });
 
 // Поля ввода данных ребёнка
@@ -89,30 +103,45 @@ childrenNormInput.addEventListener("input", function () {
 // Добавление опекуна
 let targetTrustee;
 let targetTrusteeIndex;
-let newTrusteeToggle = true;
+let newTrusteeToggle = false;
 let targetTrusteeButton = document.getElementById("newTrusteeButton");
 targetTrusteeButton.addEventListener("click", function () {
-    targetTrusteeButton.classList.toggle("button_Toggle");
+    targetTrusteeButton.classList.toggle("displaynone");
+    confirmChangesTrusteeButton.classList.toggle("displaynone");
+    showTrusteeInputs();
+    targetTrustee = new Trustee(trustees);
+    newTrusteeToggle = !newTrusteeToggle;
+
+});
+// Подтверждение изменений в опекуне
+confirmTrusteeButton.addEventListener("click", function () {
     if (newTrusteeToggle) {
-        showTrusteeInputs();
-        targetTrustee = new Trustee(trustees);
-        newTrusteeToggle = !newTrusteeToggle;
-    } else {
         targetChildren.addTrustee(targetTrustee.getId());
         trustees.push(targetTrustee);
         showTrusteeInputs();
         newTrusteeToggle = !newTrusteeToggle;
         renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
         clearTrusteeInputs();
+    } else {
+        trustees.forEach(trustee => {
+            if (trustee.getId() == targetTrusteeIndex) {
+                trustee.copyTrustee(targetTrustee);
+            }
+        });
+        clearTrusteeInputs();
+        showTrusteeInputs();
+        showTrusteeInfo(trustees, targetTrusteeIndex);
+
+        renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
     }
+    confirmChangesTrusteeButton.classList.toggle("displaynone");
+    newTrusteeButton.classList.toggle("displaynone");
 });
-// Подтверждение изменений в опекуне
-confirmChangesTrusteeButton.addEventListener("click", function () {
-    trustees.forEach(trustee => {
-        if (trustee.getId() == targetTrusteeIndex) {
-            trustee = targetTrustee;
-        }
-    });
+
+canselTrusteeButton.addEventListener("click", function () {
+    if (newTrusteeToggle) {
+        newTrusteeToggle = !newTrusteeToggle;
+    }
     clearTrusteeInputs();
     showTrusteeInputs();
     showTrusteeInfo(trustees, targetTrusteeIndex);
@@ -202,6 +231,8 @@ function renderTrusteeList(childrenTrustees, index, trustees) {
             trustees.forEach(trustee => {
                 if (trustee.getId() == targetTrusteeIndex) {
                     fillTrusteeInputs(trustees, targetTrusteeIndex);
+                    targetTrustee = new Trustee(trustees);
+                    targetTrustee.copyTrustee(trustee);
                 }
             });
             event.stopPropagation();
@@ -263,7 +294,8 @@ function renderChildrenList() {
             targetChildrenIndex = childrenItem.getAttribute("data-index");
             childrens.forEach(children => {
                 if (children.getId() == targetChildrenIndex) {
-                    targetChildren = children;
+                    targetChildren = new Children(childrens);
+                    targetChildren.copyChildren(children);
                 }
             });
             showChildrenInputs();

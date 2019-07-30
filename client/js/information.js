@@ -46,6 +46,10 @@ let trusteeCurrentEmploymentInput = document.getElementById("trusteeCurrentEmplo
 
 let trusteeNotesInput = document.getElementById("trusteeNotes");
 
+let newTrusteeButton = document.getElementById("newTrusteeButton");
+let confirmChangesTrusteeButton = document.getElementById("confirmChangesTrustee");
+let confirmTrusteeButton=document.getElementById("confirmTrustee");
+let canselTrusteeButton=document.getElementById("canselTrustee");
 
 // Дети поля для отображеня информации
 let childrenLastName = document.getElementById("childrenLastName");
@@ -91,9 +95,10 @@ let childrenNotesInput = document.getElementById("childrenNotesInput");
 
 
 let childrenTrusteeList = document.getElementById("childrenTrusteeList");
-let newTrusteeButton = document.getElementById("newTrusteeButton");
-let confirmChangesTrusteeButton = document.getElementById("confirmChangesTrustee");
+
 let confirmChangesChildrenButton = document.getElementById("confirmChangesChildren");
+let confirmChildrenButton=document.getElementById("confirmChildren");
+let canselChildrenButton=document.getElementById("canselChildren");
 
 function newButton(className) {
     let Button = document.createElement("div");
@@ -342,6 +347,29 @@ function fillChildrenInputs(children, trustees) {
     renderTrusteeList(children.getTrustees(), children.getId(), trustees);
 }
 
+function clearChildrenInputs(){
+    childrenLastNameInput.value = "";
+    childrenFirstNameInput.value = "";
+    childrenPatronymicInput.value = "";
+    childrenBirthdayInput.value = "";
+
+    childrenSchoolInput.value = "";
+    childrenClassNumberInput.value = "";
+    childrenPlaceOfStudyInput.value = "";
+
+    childrenHomeNumberInput.value = "";
+    childrenMobileNumberInput.value = "";
+
+    childrenVillageCouncilInput.value = "";
+    childrenLocalityInput.value = "";
+    childrenAddressInput.value = "";
+
+    childrenNormInput.value = "";
+
+    childrenNotesInput.value = "";
+
+    clearTrusteeList();
+}
 
 
 function showChildrenInputs() {

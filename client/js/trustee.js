@@ -31,6 +31,33 @@ class Trustee {
             }
         });
     };
+    
+    copyTrustee(trustee) {
+        this.id = trustee.getId();
+        this.status = trustee.getStatus();
+        this.firstName = trustee.getFirstName();
+        this.lastName = trustee.getLastName();
+        this.patronymic = trustee.getPatronymic();
+        this.birthday = trustee.getBirthday();
+        this.relations = trustee.getRelations();
+
+        this.homeNumber = trustee.getHomeNumber();
+        this.mobileNumber = trustee.getMobileNumber();
+        this.workNumber = trustee.getWork();
+        this.email = trustee.getEmail();
+
+        this.district = trustee.getDistrict();
+        this.villageCouncil = trustee.getVillageCouncil();
+        this.locality = trustee.getLocality();
+        this.address = trustee.getAddress();
+        this.index = trustee.getIndex();
+
+        this.work = trustee.getWork();
+        this.position = trustee.getPosition();
+        this.currentEmployment = trustee.getCurrentEmployment();
+
+        this.notes = trustee.getNotes();
+    }
 
     getId() {
         return this.id;
@@ -153,7 +180,7 @@ class Trustee {
     }
 
     setIndex(index) {
-        this.index=index;
+        this.index = index;
     }
 
     getWork() {

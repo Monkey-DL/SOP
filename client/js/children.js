@@ -33,6 +33,34 @@ class Children {
         });
     };
 
+   copyChildren(children) {
+        this.id = children.getId();
+        this.lastName = children.getLastName();
+        this.firstName = children.getFirstName();
+        this.patronymic = children.getPatronymic();
+        this.birthday = children.getBirthday();
+
+        this.school = children.getSchool();
+        this.classNumber = children.getClassNumber();
+        this.placeOfStudy = children.getPlaceOfStudy();
+
+        this.homeNumber = children.getHomeNumber();
+        this.mobileNumber = children.getMobileNumber();
+
+        this.villageCouncil = children.getVillageCouncil();
+        this.locality = children.getLocality();
+        this.address = children.getAddress();
+
+        this.sopRecognitionDates = [];
+        this.sopReviewDate = [];
+        this.termControl = [];
+        this.norm;
+
+        this.notes = children.getNotes();
+
+        this.trustees = children.getTrustees();
+    }
+
     getId() {
         return this.id;
     }

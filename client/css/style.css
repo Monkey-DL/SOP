@@ -15,7 +15,7 @@
   height: 100vh;
   background-color: #fff;
   font-family: 'Roboto Regular';
-  font-size: 14px;
+  font-size: 13px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
@@ -69,7 +69,7 @@ h2 {
 
 input {
   display: block;
-  height: 20px;
+  height: 16px;
   background: #739dec;
   border: none;
   border-bottom: 2px solid #000;
@@ -80,8 +80,43 @@ input:focus {
   outline: 0;
 }
 
-.displaynone {
-  display: none;
+.confirmChanges {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  margin: 2px;
+  cursor: default;
+}
+
+.confirmChanges .confirm,
+.confirmChanges .cansel {
+  width: 50%;
+  padding: 5px;
+}
+
+.confirmChanges .confirm {
+  background-color: #459045;
+  border-radius: 5px 0 0 5px;
+}
+
+.confirmChanges .confirm:hover {
+  background-color: #62af62;
+}
+
+.confirmChanges .cansel {
+  background-color: #ff0000;
+  border-radius: 0 5px 5px 0;
+}
+
+.confirmChanges .cansel:hover {
+  background-color: #ff5555;
 }
 
 .childrens {
@@ -111,26 +146,6 @@ input:focus {
 
 .childrens #newChildrenButton:hover {
   background-color: #96b9fa;
-}
-
-.childrens .button_Toggle {
-  background-color: #459045;
-}
-
-.childrens .confirmChanges {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 5px;
-  width: 100%;
-  text-align: center;
-  border-radius: 5px;
-  margin: 2px;
-  cursor: default;
-  background-color: #459045;
-}
-
-.childrens .confirmChanges:hover {
-  background-color: #62af62;
 }
 
 .childrens .children_list {
@@ -230,8 +245,7 @@ input:focus {
   grid-area: trustee;
 }
 
-.children_info .trustee #newTrusteeButton,
-.children_info .trustee .confirmChanges {
+.children_info .trustee #newTrusteeButton {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 5px;
@@ -243,17 +257,8 @@ input:focus {
   cursor: default;
 }
 
-.children_info .trustee #newTrusteeButton:hover,
-.children_info .trustee .confirmChanges:hover {
+.children_info .trustee #newTrusteeButton:hover {
   background-color: #96b9fa;
-}
-
-.children_info .trustee .confirmChanges {
-  background-color: #459045;
-}
-
-.children_info .trustee .confirmChanges:hover {
-  background-color: #62af62;
 }
 
 .children_info .note {
@@ -310,5 +315,9 @@ input:focus {
 
 .trustee_info p {
   background-color: #5b85d4;
+}
+
+.displaynone {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */
