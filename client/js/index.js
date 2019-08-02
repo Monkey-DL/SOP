@@ -24,7 +24,7 @@ confirmChildrenButton.addEventListener("click", function () {
     if (newChildrenToggle) {
         childrens.push(targetChildren);
         showChildrenInfo(targetChildren, trustees);
-        showChildrenInputs();
+        // showChildrenInputs();
         renderChildrenList();
         newChildrenToggle = !newChildrenToggle;
         targetChildren = undefined;
@@ -35,7 +35,7 @@ confirmChildrenButton.addEventListener("click", function () {
             }
         });
         clearChildrenInputs();
-        showChildrenInputs();
+        // showChildrenInputs();
         showChildrenInfo(targetChildren, trustees);
 
         renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
@@ -43,6 +43,7 @@ confirmChildrenButton.addEventListener("click", function () {
     }
     confirmChangesChildrenButton.classList.toggle("displaynone");
     targetChildrenButton.classList.toggle("displaynone");
+    hiddenAll();
 });
 
 canselChildrenButton.addEventListener("click", function () {
@@ -50,7 +51,8 @@ canselChildrenButton.addEventListener("click", function () {
         newChildrenToggle = !newChildrenToggle;
     }
     clearChildrenInputs();
-    showChildrenInputs();
+    // showChildrenInputs();
+    hiddenAll();
     confirmChangesChildrenButton.classList.toggle("displaynone");
     targetChildrenButton.classList.toggle("displaynone");
     renderChildrenList();
@@ -247,6 +249,11 @@ function renderTrusteeList(childrenTrustees, index, trustees) {
                     break;
                 }
             }
+            // for (let i = 0; i < trustees.length; i++) {
+            //     if (trustees[i].getId()==this.parentNode.getAttribute("date-index")){
+
+            //     }
+            // }
             this.parentNode.parentNode.removeChild(this.parentNode);
             event.stopPropagation();
         });

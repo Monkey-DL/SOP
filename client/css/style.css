@@ -91,8 +91,8 @@ input:focus {
           box-sizing: border-box;
   width: 100%;
   text-align: center;
-  margin: 2px;
   cursor: default;
+  margin-top: 2px;
 }
 
 .confirmChanges .confirm,
@@ -191,11 +191,14 @@ input:focus {
 .children_info {
   display: -ms-grid;
   display: grid;
+  -ms-grid-columns: 255px 367px;
+      grid-template-columns: 255px 367px;
   -ms-grid-rows: 30px (auto)[3] 202.5px;
       grid-template-rows: 30px repeat(3, auto) 202.5px;
   grid-row-gap: 5px;
   grid-column-gap: 5px;
       grid-template-areas: "textHead textHead" "fio sop" "education sop" "contacts note" "location trustee";
+  word-wrap: break-word;
 }
 
 .children_info_group {
@@ -219,6 +222,56 @@ input:focus {
   -ms-grid-row-span: 2;
   -ms-grid-column: 2;
   grid-area: sop;
+}
+
+.children_info .sop #listOfDates {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 100px;
+  margin-top: 5px;
+}
+
+.children_info .sop #listOfDates .listOfDates_item {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2px;
+}
+
+.children_info .sop #listOfDates .listOfDates_item span {
+  display: block;
+  width: 90%;
+  height: 1.2em;
+  max-width: 90%;
+  overflow: hidden;
+  cursor: default;
+}
+
+.children_info .sop #listOfDates .listOfDates_item:nth-child(2n) {
+  background-color: #5b85d4;
+}
+
+.children_info .sop #newDateButton {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  background-color: #5b85d4;
+  border-radius: 5px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  cursor: default;
+}
+
+.children_info .sop #newDateButton:hover {
+  background-color: #96b9fa;
+}
+
+.children_info .sop #sopDate {
+  margin-top: 2px;
 }
 
 .children_info .education {
@@ -253,7 +306,6 @@ input:focus {
   text-align: center;
   background-color: #5b85d4;
   border-radius: 5px;
-  margin: 2px;
   cursor: default;
 }
 
@@ -300,8 +352,8 @@ input:focus {
 .trustee_info {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 30px (auto)[4];
-      grid-template-rows: 30px repeat(4, auto);
+  -ms-grid-rows: 30px (auto)[5];
+      grid-template-rows: 30px repeat(5, auto);
   grid-row-gap: 5px;
   grid-column-gap: 5px;
 }
@@ -319,5 +371,10 @@ input:focus {
 
 .displaynone {
   display: none;
+}
+
+.borderBottom {
+  border-bottom: 1px solid #000;
+  cursor: default;
 }
 /*# sourceMappingURL=style.css.map */

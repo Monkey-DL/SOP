@@ -105,19 +105,36 @@
             <div class="children_info_group sop">
                 <h3>СОП</h3>
                 <div class="label">
-                    <span>Даты признания СОП: </span>
-                    <p id="childrenDateOfRecognition"></p>
+                    <span id="childrenRecognitionDateButton">Даты признания СОП: </span>
+                    <p id="childrenRecognitionDate"></p>
                 </div>
                 <div class="label">
-                    <span>Дата рассмотрения на кординационном совете: </span>
-                    <p id="childrenConsiderationDate"></p>
+                    <span id="childrenReviewDateButton">Дата рассмотрения на кординационном совете: </span>
+                    <p id="childrenReviewDate"></p>
                 </div>
                 <div class="label">
-                    <span>Срок котроля: </span>
-                    <p id="childrenTermOfSale"></p>
+                    <span id="childrenTermControlButton">Срок котроля: </span>
+                    <p id="childrenTermControl"></p>
+                </div>
+                <div id="listOfDates">
+                    <div class="listOfDates_item">
+                    </div>
+                </div>
+                <div id="sopDate" class="labe displaynone">
+                    <span>Дата:</span>
+                    <input id="sopDateInput" type="date"></div>
+                <div id="sopSchool" class="labe displaynone">
+                    <span>Учебная организация:</span>
+                    <input id="sopSchoolInput" type="text"></div>
+                <div id="newDateButton" class="displaynone">Добавить</div>
+                <div id="confirmChangesDatesButton" class="displaynone">
+                    <div class="confirmChanges">
+                        <div id="confirmDate" class="confirm">Подтвердить</div>
+                        <div id="canselDate" class="cansel">Отмена</div>
+                    </div>
                 </div>
                 <div class="label">
-                    <span>критерии и показатели СОП: </span>
+                    <span>Критерии и показатели СОП: </span>
                     <p id="childrenNorm"></p>
                     <input type="text" id="childrenNormInput" class="displaynone">
                 </div>
@@ -135,7 +152,8 @@
                         <div id="confirmTrustee" class="confirm">Подтвердить</div>
                         <div id="canselTrustee" class="cansel">Отмена</div>
                     </div>
-                </div><div id="childrenTrusteeList" class="trustee_list">
+                </div>
+                <div id="childrenTrusteeList" class="trustee_list">
                 </div>
             </div>
         </div>
@@ -250,6 +268,7 @@
             </div>
         </div>
         <script src="js/information.js"></script>
+        <script src="js/sopDate.js"></script>
         <script src="js/trustee.js"></script>
         <script src="js/children.js"></script>
         <script src="js/index.js"></script>

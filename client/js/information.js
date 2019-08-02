@@ -48,8 +48,8 @@ let trusteeNotesInput = document.getElementById("trusteeNotes");
 
 let newTrusteeButton = document.getElementById("newTrusteeButton");
 let confirmChangesTrusteeButton = document.getElementById("confirmChangesTrustee");
-let confirmTrusteeButton=document.getElementById("confirmTrustee");
-let canselTrusteeButton=document.getElementById("canselTrustee");
+let confirmTrusteeButton = document.getElementById("confirmTrustee");
+let canselTrusteeButton = document.getElementById("canselTrustee");
 
 // Дети поля для отображеня информации
 let childrenLastName = document.getElementById("childrenLastName");
@@ -70,6 +70,10 @@ let childrenAddress = document.getElementById("childrenAddress");
 
 
 
+let childrenRecognitionDate = document.getElementById("childrenRecognitionDate");
+let childrenReviewDate = document.getElementById("childrenReviewDate");
+let childrenTermControl = document.getElementById("childrenTermControl");
+let childernListOfDates = document.getElementById("listOfDates");
 let childrenNotes = document.getElementById("childrenNotes");
 
 // Дети текстовые поля
@@ -89,7 +93,18 @@ let childrenVillageCouncilInput = document.getElementById("childrenVillageCounci
 let childrenLocalityInput = document.getElementById("childrenLocalityInput");
 let childrenAddressInput = document.getElementById("childrenAddressInput");
 
+let sopDate = document.getElementById("sopDate");
+let sopSchool = document.getElementById("sopSchool");
+let sopDateInput = document.getElementById("sopDateInput");
+let sopSchoolInput = document.getElementById("sopSchoolInput");
 let childrenNormInput = document.getElementById("childrenNormInput");
+
+let newDateButton = document.getElementById("newDateButton");
+let confirmChangesDatesButton = document.getElementById("confirmChangesDatesButton");
+let confirmDateButton = document.getElementById("confirmDate");
+let canselDateButton = document.getElementById("canselDate");
+
+
 
 let childrenNotesInput = document.getElementById("childrenNotesInput");
 
@@ -97,8 +112,12 @@ let childrenNotesInput = document.getElementById("childrenNotesInput");
 let childrenTrusteeList = document.getElementById("childrenTrusteeList");
 
 let confirmChangesChildrenButton = document.getElementById("confirmChangesChildren");
-let confirmChildrenButton=document.getElementById("confirmChildren");
-let canselChildrenButton=document.getElementById("canselChildren");
+let confirmChildrenButton = document.getElementById("confirmChildren");
+let canselChildrenButton = document.getElementById("canselChildren");
+
+let childrenRecognitionDateButton = document.getElementById("childrenRecognitionDateButton");
+let childrenReviewDateButton = document.getElementById("childrenReviewDateButton");
+let childrenTermControlButton = document.getElementById("childrenTermControlButton");
 
 function newButton(className) {
     let Button = document.createElement("div");
@@ -265,14 +284,52 @@ function showTrusteeInputs() {
 }
 
 function clearTrusteeList() {
-    if (childrenTrusteeList.children.length > 0) {
-        for (let i = childrenTrusteeList.children.length - 1; i >= 0; i--) {
-            childrenTrusteeList.removeChild(childrenTrusteeList.children[i]);
-        }
-    }
+    childrenTrusteeList.innerHTML = "";
 }
 
+let dateType;
 
+function renderListOfDates(children, dateType) {
+    listOfDates.innerHTML = "";
+    switch (dateType) {
+        case "RecognitionDate":
+            datesList = children.getAllRecognitionDates();
+            break;
+        case "ReviewDate":
+            datesList = children.getAllReviewDates();
+            break;
+        case "TermControl":
+            datesList = children.getAllTermControl();
+            break;
+
+        default:
+            break;
+    }
+
+    for (let i = 0; i < datesList.length; i++) {
+        element = datesList[i];
+        let listOfDatesItem = document.createElement("div");
+        listOfDatesItem.classList = "listOfDates_item";
+        listOfDatesItem.setAttribute("data-index", i);
+
+        let listOfDatesItemText = document.createElement("span");
+        listOfDatesItemText.innerHTML = i + 1 + ") " + element.getDate();
+        if (dateType != "TermControl") {
+            listOfDatesItemText.innerHTML += " " + element.getSchool();
+        }
+        listOfDatesItem.appendChild(listOfDatesItemText);
+
+        let deleteButton = newButton("delete");
+        deleteButton.addEventListener("click", function () {
+            datesList.splice(deleteButton.parentNode.getAttribute("data-index"), 1)
+            event.stopPropagation();
+            renderListOfDates(children);
+        });
+
+        listOfDatesItem.appendChild(deleteButton);
+        listOfDates.appendChild(listOfDatesItem);
+    }
+}
 
 function showChildrenInfo(children, trustees) {
     childrenLastName.innerHTML = children.getLastName();
@@ -290,8 +347,12 @@ function showChildrenInfo(children, trustees) {
     childrenVillageCouncil.innerHTML = children.getVillageCouncil();
     childrenLocality.innerHTML = children.getLocality();
     childrenAddress.innerHTML = children.getAddress();
-    childrenNorm.innerHTML = children.getNorm();
 
+    childrenRecognitionDate.innerHTML = children.getLastRecognitionDate();
+    childrenReviewDate.innerHTML = children.getReviewDate();
+    childrenTermControl.innerHTML = children.getTermControl();
+
+    childrenNorm.innerHTML = children.getNorm();
 
     childrenNotes.innerHTML = children.getNotes();
 
@@ -316,6 +377,10 @@ function clearChildrenInfo() {
     childrenVillageCouncil.innerHTML = "";
     childrenLocality.innerHTML = "";
     childrenAddress.innerHTML = "";
+
+    childrenRecognitionDate.innerHTML = "";
+    childrenReviewDate.innerHTML = "";
+    childrenTermControl.innerHTML = "";
     childrenNorm.innerHTML = "";
 
     childrenNotes.innerHTML = "";
@@ -347,7 +412,7 @@ function fillChildrenInputs(children, trustees) {
     renderTrusteeList(children.getTrustees(), children.getId(), trustees);
 }
 
-function clearChildrenInputs(){
+function clearChildrenInputs() {
     childrenLastNameInput.value = "";
     childrenFirstNameInput.value = "";
     childrenPatronymicInput.value = "";
@@ -388,6 +453,7 @@ function showChildrenInputs() {
     childrenVillageCouncilInput.classList.toggle("displaynone");
     childrenLocalityInput.classList.toggle("displaynone");
     childrenAddressInput.classList.toggle("displaynone");
+
     childrenNormInput.classList.toggle("displaynone");
     childrenNotesInput.classList.toggle("displaynone");
 
@@ -408,15 +474,169 @@ function showChildrenInputs() {
     childrenLocality.classList.toggle("displaynone");
     childrenAddress.classList.toggle("displaynone");
 
+    childrenNorm.classList.toggle("displaynone");
     childrenNotes.classList.toggle("displaynone");
 
+    newDateButton.classList.toggle("displaynone");
     newTrusteeButton.classList.toggle("displaynone");
 }
 
 function clearChildrenList() {
-    if (childrenList.children.length > 0) {
-        for (let i = childrenList.children.length - 1; i >= 0; i--) {
-            childrenList.removeChild(childrenList.children[i]);
-        }
+    childrenList.innerHTML = "";
+}
+
+childrenRecognitionDateButton.addEventListener("click", function () {
+    dateType = "RecognitionDate";
+    renderListOfDates(targetChildren, dateType);
+    this.classList.toggle("borderBottom");
+    childrenReviewDateButton.classList.remove("borderBottom");
+    childrenTermControlButton.classList.remove("borderBottom");
+});
+childrenReviewDateButton.addEventListener("click", function () {
+    dateType = "ReviewDate";
+    renderListOfDates(targetChildren, dateType)
+    this.classList.toggle("borderBottom");
+    childrenRecognitionDateButton.classList.remove("borderBottom");
+    childrenTermControlButton.classList.remove("borderBottom");
+});
+childrenTermControlButton.addEventListener("click", function () {
+    dateType = "TermControl";
+    renderListOfDates(targetChildren, dateType)
+    this.classList.toggle("borderBottom");
+    childrenRecognitionDateButton.classList.remove("borderBottom");
+    childrenReviewDateButton.classList.remove("borderBottom");
+});
+
+newDateButton.addEventListener("click", function () {
+    showSopInputs();
+});
+
+confirmDateButton.addEventListener("click", function () {
+    let newSopDate = new SopDate(sopDateInput.value, sopSchoolInput.value);
+
+    if (dateType == "RecognitionDate") {
+        targetChildren.addRecognitionDate(newSopDate);
     }
+    if (dateType == "ReviewDate") {
+        targetChildren.addReviewDate(newSopDate);
+    }
+    if (dateType == "TermControl") {
+        targetChildren.addTermControl(newSopDate);
+    }
+    showSopInputs();
+    renderListOfDates(targetChildren, dateType);
+});
+
+canselDateButton.addEventListener("click", function () {
+
+    showSopInputs();
+});
+
+function showSopInputs() {
+    listOfDates.classList.toggle("displaynone");
+    confirmChangesDatesButton.classList.toggle("displaynone");
+    newDateButton.classList.toggle("displaynone");
+    sopDate.classList.toggle("displaynone");
+    sopSchool.classList.toggle("displaynone");
+    sopDateInput.value = "";
+    sopSchoolInput.value = "";
+}
+
+function hiddenAll() {
+    trusteeLastName = document.getElementById("trusteeLastName");
+    trusteeFirstName = document.getElementById("trusteeFirstName");
+    trusteePatronymic = document.getElementById("trusteePatronymic");
+    trusteeBirthday = document.getElementById("trusteeBirthday");
+    trusteeRelations = document.getElementById("trusteeRelations");
+
+    trusteeHomeNumber = document.getElementById("trusteeHomeNumber");
+    trusteeMobileNumber = document.getElementById("trusteeMobileNumber");
+    trusteeWorkNumber = document.getElementById("trusteeWorkNumber");
+    trusteeEmail = document.getElementById("trusteeEmail");
+
+    trusteeDistrict = document.getElementById("trusteeDistrict");
+    trusteeVillageCouncil = document.getElementById("trusteeVillageCouncil");
+    trusteeLocality = document.getElementById("trusteeLocality");
+    trusteeAddress = document.getElementById("trusteeAddress");
+    trusteeIndex = document.getElementById("trusteeIndex");
+
+    trusteeWork = document.getElementById("trusteeWork");
+    trusteePosition = document.getElementById("trusteePosition");
+    trusteeCurrentEmployment = document.getElementById("trusteeCurrentEmployment");
+
+    trusteeNotes = document.getElementById("trusteeNotes");
+
+    // Опекуны текстовые поля
+    trusteeStatusInput.classList.add("displaynone");
+    trusteeLastNameInput.classList.add("displaynone");
+    trusteeFirstNameInput.classList.add("displaynone");
+    trusteePatronymicInput.classList.add("displaynone");
+    trusteeBirthdayInput.classList.add("displaynone");
+    trusteeRelationsInput.classList.add("displaynone");
+
+    trusteeHomeNumberInput.classList.add("displaynone");
+    trusteeMobileNumberInput.classList.add("displaynone");
+    trusteeWorkNumberInput.classList.add("displaynone");
+    trusteeEmailInput.classList.add("displaynone");
+
+    trusteeDistrictInput.classList.add("displaynone");
+    trusteeVillageCouncilInput.classList.add("displaynone");
+    trusteeLocalityInput.classList.add("displaynone");
+    trusteeAddressInput.classList.add("displaynone");
+    trusteeIndexInput.classList.add("displaynone");
+
+    trusteeWorkInput.classList.add("displaynone");
+    trusteePositionInput.classList.add("displaynone");
+    trusteeCurrentEmploymentInput.classList.add("displaynone");
+
+    trusteeNotesInput.classList.add("displaynone");
+
+    newTrusteeButton.classList.add("displaynone");
+    confirmChangesTrusteeButton.classList.add("displaynone");
+
+    // Дети поля для отображеня информации
+    childrenLastName.classList.remove("displaynone");
+    childrenFirstName.classList.remove("displaynone");
+    childrenPatronymic.classList.remove("displaynone");
+    childrenBirthday.classList.remove("displaynone");
+
+    childrenSchool.classList.remove("displaynone");
+    childrenClassNumber.classList.remove("displaynone");
+    childrenPlaceOfStudy.classList.remove("displaynone");
+
+    childrenHomeNumber.classList.remove("displaynone");
+    childrenMobileNumber.classList.remove("displaynone");
+
+    childrenVillageCouncil.classList.remove("displaynone");
+    childrenLocality.classList.remove("displaynone");
+    childrenAddress.classList.remove("displaynone");
+
+    childernListOfDates.classList.remove("displaynone");
+    childrenNotes.classList.remove("displaynone");
+
+    // Дети текстовые поля
+    childrenLastNameInput.classList.add("displaynone");
+    childrenFirstNameInput.classList.add("displaynone");
+    childrenPatronymicInput.classList.add("displaynone");
+    childrenBirthdayInput.classList.add("displaynone");
+
+    childrenSchoolInput.classList.add("displaynone");
+    childrenClassNumberInput.classList.add("displaynone");
+    childrenPlaceOfStudyInput.classList.add("displaynone");
+
+    childrenHomeNumberInput.classList.add("displaynone");
+    childrenMobileNumberInput.classList.add("displaynone");
+
+    childrenVillageCouncilInput.classList.add("displaynone");
+    childrenLocalityInput.classList.add("displaynone");
+    childrenAddressInput.classList.add("displaynone");
+
+    sopDate.classList.add("displaynone");
+    sopSchool.classList.add("displaynone");
+    childrenNormInput.classList.add("displaynone");
+
+    newDateButton.classList.add("displaynone");
+    confirmChangesDatesButton.classList.add("displaynone");
+
+    childrenNotesInput.classList.add("displaynone");
 }

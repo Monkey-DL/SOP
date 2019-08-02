@@ -33,7 +33,7 @@ class Children {
         });
     };
 
-   copyChildren(children) {
+    copyChildren(children) {
         this.id = children.getId();
         this.lastName = children.getLastName();
         this.firstName = children.getFirstName();
@@ -51,9 +51,9 @@ class Children {
         this.locality = children.getLocality();
         this.address = children.getAddress();
 
-        this.sopRecognitionDates = [];
-        this.sopReviewDate = [];
-        this.termControl = [];
+        this.sopRecognitionDates = children.getAllRecognitionDates();
+        this.sopReviewDate = children.getAllReviewDates();
+        this.termControl = children.getAllTermControl();
         this.norm;
 
         this.notes = children.getNotes();
@@ -146,9 +146,52 @@ class Children {
     getAddress() {
         return this.address;
     };
+
     setAddress(address) {
         this.address = address;
     };
+
+    getLastRecognitionDate() {
+        if (this.sopRecognitionDates.length > 0) {
+            return this.sopRecognitionDates[this.sopRecognitionDates.length - 1].getDate()+" "+this.sopRecognitionDates[this.sopRecognitionDates.length - 1].getSchool();
+        }
+    }
+
+    getAllRecognitionDates() {
+        return this.sopRecognitionDates;
+    }
+
+    addRecognitionDate(date) {
+        this.sopRecognitionDates.push(date);
+    }
+
+    getReviewDate() {
+        if (this.sopReviewDate.length > 0) {
+            return this.sopReviewDate[this.sopReviewDate.length - 1].getDate()+" "+this.sopReviewDate[this.sopReviewDate.length - 1].getSchool();
+        }
+    }
+
+    getAllReviewDates() {
+        return this.sopReviewDate;
+    }
+
+    addReviewDate(date) {
+        this.sopReviewDate.push(date);
+    }
+
+    getTermControl() {
+        if (this.termControl.length > 0) {
+            return this.termControl[this.termControl.length - 1].getDate();
+        }
+    }
+
+    getAllTermControl() {
+        return this.termControl;
+    }
+
+    addTermControl(date) {
+        this.termControl.push(date);
+    }
 
     getNorm() {
         return this.norm;

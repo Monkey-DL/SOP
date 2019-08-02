@@ -80,8 +80,8 @@ input {
     box-sizing: border-box;
     width: 100%;
     text-align: center;
-    margin: 2px;
     cursor: default;
+    margin-top: 2px;
 
     .confirm,
     .cansel {
@@ -176,6 +176,7 @@ input {
 
 .children_info {
     display: grid;
+    grid-template-columns: 255px 367px;
     grid-template-rows: 30px repeat(3, auto) 202.5px;
     grid-row-gap: 5px;
     grid-column-gap: 5px;
@@ -185,6 +186,7 @@ input {
         "education sop"
         "contacts note"
         "location trustee";
+    word-wrap: break-word;
 
     &_group {
         background-color: $cardColor;
@@ -202,6 +204,52 @@ input {
 
     .sop {
         grid-area: sop;
+
+        #listOfDates {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100px;
+            margin-top: 5px;
+
+            .listOfDates_item {
+                width: 100%;
+                display: flex;
+                padding: 2px;
+
+                span {
+                    display: block;
+                    width: 90%;
+                    height: 1.2em;
+                    max-width: 90%;
+                    overflow: hidden;
+                    cursor: default;
+                }
+
+                &:nth-child(2n) {
+                    background-color: $listFon;
+                }
+            }
+        }
+
+        #newDateButton {
+            box-sizing: border-box;
+            padding: 5px;
+            width: 100%;
+            text-align: center;
+            background-color: $listFon;
+            border-radius: 5px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+            cursor: default;
+
+            &:hover {
+                background-color: $hoverColor;
+            }
+        }
+
+        #sopDate{
+            margin-top: 2px;
+        }
     }
 
     .education {
@@ -226,7 +274,6 @@ input {
             text-align: center;
             background-color: $listFon;
             border-radius: 5px;
-            margin: 2px;
             cursor: default;
 
             &:hover {
@@ -260,8 +307,6 @@ input {
                 cursor: default;
             }
 
-
-
             &:nth-child(2n) {
                 background-color: $listFon;
             }
@@ -275,7 +320,7 @@ input {
 
 .trustee_info {
     display: grid;
-    grid-template-rows: 30px repeat(4, auto);
+    grid-template-rows: 30px repeat(5, auto);
     grid-row-gap: 5px;
     grid-column-gap: 5px;
 
@@ -293,4 +338,9 @@ input {
 
 .displaynone {
     display: none;
+}
+
+.borderBottom{
+    border-bottom: 1px solid #000;
+    cursor: default;
 }
