@@ -4,6 +4,9 @@ let trustees = [];
 
 let childrenList = document.getElementById("childrenList");
 
+let httpRequest = new XMLHttpRequest();
+httpRequest.overrideMimeType('application/json');
+
 
 // Добавление ребёнка
 let targetChildrenIndex;
@@ -28,6 +31,14 @@ confirmChildrenButton.addEventListener("click", function () {
         renderChildrenList();
         newChildrenToggle = !newChildrenToggle;
         targetChildren = undefined;
+
+        childrensJSON = JSON.stringify(childrens);
+        httpRequest.onreadystatechange = function () {};
+        httpRequest.open('POST', '/addChildren', true);
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        httpRequest.send('children=' + childrensJSON);
+        // console.log(childrensJSON);
+
     } else {
         childrens.forEach(children => {
             if (children.getId() == targetChildrenIndex) {
