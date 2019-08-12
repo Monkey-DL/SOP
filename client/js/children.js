@@ -1,28 +1,28 @@
 class Children {
     constructor(childrens) {
         this.id = 0;
-        this.lastName;
-        this.firstName;
-        this.patronymic;
-        this.birthday;
+        this.lastName = '';
+        this.firstName = '';
+        this.patronymic = '';
+        this.birthday = '';
 
-        this.school;
-        this.classNumber;
-        this.placeOfStudy;
+        this.school = '';
+        this.classNumber = '';
+        this.placeOfStudy = '';
 
-        this.homeNumber;
-        this.mobileNumber;
+        this.homeNumber = '';
+        this.mobileNumber = '';
 
-        this.villageCouncil;
-        this.locality;
-        this.address;
+        this.villageCouncil = '';
+        this.locality = '';
+        this.address = '';
 
         this.sopRecognitionDates = [];
         this.sopReviewDate = [];
         this.termControl = [];
-        this.norm;
+        this.norm = '';
 
-        this.notes;
+        this.notes = '';
 
         this.trustees = [];
 
@@ -54,11 +54,38 @@ class Children {
         this.sopRecognitionDates = children.getAllRecognitionDates();
         this.sopReviewDate = children.getAllReviewDates();
         this.termControl = children.getAllTermControl();
-        this.norm;
+        this.norm=children.getNorm();
 
         this.notes = children.getNotes();
 
         this.trustees = children.getTrustees();
+    }
+    copyChildrenJson(children) {
+        this.id = children.id;
+        this.lastName = children.lastName;
+        this.firstName = children.firstName;
+        this.patronymic = children.patronymic;
+        this.birthday = children.birthday;
+
+        this.school = children.school;
+        this.classNumber = children.classNumber;
+        this.placeOfStudy = children.placeOfStudy;
+
+        this.homeNumber = children.homeNumber;
+        this.mobileNumber = children.mobileNumber;
+
+        this.villageCouncil = children.villageCouncil;
+        this.locality = children.locality;
+        this.address = children.address;
+
+        this.sopRecognitionDates = children.sopRecognitionDates;
+        this.sopReviewDate = children.sopReviewDate;
+        this.termControl = children.termControl;
+        this.norm=children.norm;
+
+        this.notes = children.notes;
+
+        this.trustees = children.trustees;
     }
 
     getId() {
@@ -153,7 +180,7 @@ class Children {
 
     getLastRecognitionDate() {
         if (this.sopRecognitionDates.length > 0) {
-            return this.sopRecognitionDates[this.sopRecognitionDates.length - 1].getDate()+" "+this.sopRecognitionDates[this.sopRecognitionDates.length - 1].getSchool();
+            return this.sopRecognitionDates[this.sopRecognitionDates.length - 1].getDate() + " " + this.sopRecognitionDates[this.sopRecognitionDates.length - 1].getSchool();
         }
     }
 
@@ -167,7 +194,7 @@ class Children {
 
     getReviewDate() {
         if (this.sopReviewDate.length > 0) {
-            return this.sopReviewDate[this.sopReviewDate.length - 1].getDate()+" "+this.sopReviewDate[this.sopReviewDate.length - 1].getSchool();
+            return this.sopReviewDate[this.sopReviewDate.length - 1].getDate() + " " + this.sopReviewDate[this.sopReviewDate.length - 1].getSchool();
         }
     }
 

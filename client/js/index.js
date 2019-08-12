@@ -1,12 +1,26 @@
 let childrens = [];
 let trustees = [];
 
-
 let childrenList = document.getElementById("childrenList");
 
 let httpRequest = new XMLHttpRequest();
 httpRequest.overrideMimeType('application/json');
 
+window.onload = function () {
+    httpRequest.open('POST', '/getChildrens', true);
+    httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    httpRequest.onreadystatechange = function () {};
+    httpRequest.addEventListener('load', function () {
+        let childrensJSON = JSON.parse(httpRequest.response);
+        childrensJSON.forEach(element => {
+            childrens.push(new Children(childrens));
+            childrens[childrens.length - 1].copyChildrenJson(element);
+        });
+        renderChildrenList();
+    });
+    httpRequest.send();
+
+};
 
 // Добавление ребёнка
 let targetChildrenIndex;
@@ -24,27 +38,34 @@ targetChildrenButton.addEventListener("click", function () {
 });
 
 confirmChildrenButton.addEventListener("click", function () {
+    childrensJSON = JSON.stringify(targetChildren);
     if (newChildrenToggle) {
         childrens.push(targetChildren);
         showChildrenInfo(targetChildren, trustees);
         // showChildrenInputs();
         renderChildrenList();
         newChildrenToggle = !newChildrenToggle;
-        targetChildren = undefined;
 
-        childrensJSON = JSON.stringify(childrens);
+        console.log(childrensJSON);
+
         httpRequest.onreadystatechange = function () {};
         httpRequest.open('POST', '/addChildren', true);
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         httpRequest.send('children=' + childrensJSON);
-        // console.log(childrensJSON);
 
+        targetChildren = undefined;
     } else {
         childrens.forEach(children => {
             if (children.getId() == targetChildrenIndex) {
                 children.copyChildren(targetChildren);
             }
         });
+
+        httpRequest.onreadystatechange = function () {};
+        httpRequest.open('POST', '/changeChildren', true);
+        httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        httpRequest.send('children=' + childrensJSON);
+
         clearChildrenInputs();
         // showChildrenInputs();
         showChildrenInfo(targetChildren, trustees);
@@ -286,7 +307,7 @@ function renderChildrenList() {
     for (let i = 0; i < childrens.length; i++) {
         let childrenItem = document.createElement("div");
         childrenItem.classList = "children_list_item";
-        childrenItem.setAttribute("data-index", i);
+        childrenItem.setAttribute("data-index", childrens[i].getId());
 
         let childrenItemText = document.createElement("span");
         childrenItemText.innerHTML = childrens[i].getFullName();
@@ -297,6 +318,10 @@ function renderChildrenList() {
         deleteButton.addEventListener("click", function () {
             let deleteItemIndex = deleteButton.parentElement.getAttribute("data-index");
             childrens.splice(deleteItemIndex, 1);
+            httpRequest.onreadystatechange = function () {};
+            httpRequest.open('POST', '/deleteChildren', true);
+            httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            httpRequest.send('deleteId=' + deleteItemIndex);
             renderChildrenList();
             clearChildrenInfo();
             clearTrusteeInfo();

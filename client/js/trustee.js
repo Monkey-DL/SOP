@@ -2,28 +2,28 @@ class Trustee {
     constructor(trustees) {
         this.id = 0;
         this.status = "Мама";
-        this.firstName = "Егор";
-        this.lastName = "Матвеев";
-        this.patronymic;
-        this.birthday;
-        this.relations;
+        this.firstName = '';
+        this.lastName ='';
+        this.patronymic='';
+        this.birthday='';
+        this.relations='';
 
-        this.homeNumber;
-        this.mobileNumber;
-        this.workNumber;
-        this.email;
+        this.homeNumber='';
+        this.mobileNumber='';
+        this.workNumber='';
+        this.email='';
 
-        this.district;
-        this.villageCouncil;
-        this.locality;
-        this.address;
-        this.index;
+        this.district='';
+        this.villageCouncil='';
+        this.locality='';
+        this.address='';
+        this.index='';
 
-        this.work;
-        this.position;
-        this.currentEmployment;
+        this.work='';
+        this.position='';
+        this.currentEmployment='';
 
-        this.notes;
+        this.notes='';
 
         trustees.forEach(trustee => {
             if (trustee.getId() >= this.id) {
