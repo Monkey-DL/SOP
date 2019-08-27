@@ -51,6 +51,10 @@ confirmChildrenButton.addEventListener("click", function () {
         httpRequest.onreadystatechange = function () {};
         httpRequest.open('POST', '/addChildren', true);
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        httpRequest.addEventListener('load', function () {
+            renderChildrenList();
+            targetChildren = undefined;
+        });
         httpRequest.send('children=' + childrensJSON);
 
         targetChildren = undefined;
@@ -64,17 +68,21 @@ confirmChildrenButton.addEventListener("click", function () {
         httpRequest.onreadystatechange = function () {};
         httpRequest.open('POST', '/changeChildren', true);
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        httpRequest.addEventListener('load', function () {
+            
+            showChildrenInfo(targetChildren, trustees);
+            renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
+            renderChildrenList();
+        });
         httpRequest.send('children=' + childrensJSON);
 
-        clearChildrenInputs();
         // showChildrenInputs();
-        showChildrenInfo(targetChildren, trustees);
 
-        renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
-        renderChildrenList();
+        // hiddenAll();
     }
     confirmChangesChildrenButton.classList.toggle("displaynone");
     targetChildrenButton.classList.toggle("displaynone");
+    clearChildrenInputs();
     hiddenAll();
 });
 
@@ -316,15 +324,24 @@ function renderChildrenList() {
         let deleteButton = newButton("delete");
 
         deleteButton.addEventListener("click", function () {
+
             let deleteItemIndex = deleteButton.parentElement.getAttribute("data-index");
-            childrens.splice(deleteItemIndex, 1);
+            for (children in childrens) {
+                if (childrens[children].getId() == deleteItemIndex) {
+                    childrens.splice(children, 1);
+                }
+            }
+
             httpRequest.onreadystatechange = function () {};
             httpRequest.open('POST', '/deleteChildren', true);
             httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            httpRequest.addEventListener('load', function () {
+                renderChildrenList();
+                clearChildrenInfo();
+                clearTrusteeInfo();
+            });
             httpRequest.send('deleteId=' + deleteItemIndex);
-            renderChildrenList();
-            clearChildrenInfo();
-            clearTrusteeInfo();
+
 
             event.stopPropagation();
         });

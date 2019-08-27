@@ -222,6 +222,7 @@ input:focus {
   -ms-grid-row-span: 2;
   -ms-grid-column: 2;
   grid-area: sop;
+  cursor: default;
 }
 
 .children_info .sop #listOfDates {

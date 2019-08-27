@@ -11,6 +11,8 @@ let urlencodedParser = bodyParser.urlencoded({
 let app = express();
 
 let childrens = fs.readJSONSync('childrens.json');
+let trustees=[];
+// let trustees=fs.readJSONSync('trustees.json');
 
 app.use(express.static(dir));
 
@@ -19,7 +21,6 @@ app.get('/', function (req, res) {
 });
 
 app.post('/getChildrens', function (req, res) {
-
     res.json(childrens);
 });
 
