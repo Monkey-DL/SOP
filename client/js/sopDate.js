@@ -1,12 +1,19 @@
-class SopDate{
-    constructor(date,school){
-        this.date=date;
-        this.school=school;
+class SopDate {
+    constructor(date, school) {
+        this.date = date;
+        this.school = school;
     };
-    getDate(){
+
+    copy(date) {
+        this.date = date.date;
+        this.school = date.school;
+    }
+
+    getDate() {
         return this.date;
     }
-    getSchool(){
+
+    getSchool() {
         return this.school;
     }
 }

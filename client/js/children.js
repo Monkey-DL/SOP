@@ -54,13 +54,13 @@ class Children {
         this.sopRecognitionDates = children.getAllRecognitionDates();
         this.sopReviewDate = children.getAllReviewDates();
         this.termControl = children.getAllTermControl();
-        this.norm=children.getNorm();
+        this.norm = children.getNorm();
 
         this.notes = children.getNotes();
 
         this.trustees = children.getTrustees();
     }
-    copyChildrenJson(children) {
+    copyChildrenJSON(children) {
         this.id = children.id;
         this.lastName = children.lastName;
         this.firstName = children.firstName;
@@ -78,10 +78,22 @@ class Children {
         this.locality = children.locality;
         this.address = children.address;
 
-        this.sopRecognitionDates = children.sopRecognitionDates;
-        this.sopReviewDate = children.sopReviewDate;
-        this.termControl = children.termControl;
-        this.norm=children.norm;
+        for (let i = 0; i < children.sopRecognitionDates.length; i++) {
+            this.sopRecognitionDates.push(new SopDate());
+            this.sopRecognitionDates[i].copy(children.sopRecognitionDates[i]);
+        }
+
+        for (let i = 0; i < children.sopReviewDate.length; i++) {
+            this.sopReviewDate.push(new SopDate());
+            this.sopReviewDate[i].copy(children.sopReviewDate[i]);
+        }
+
+        for (let i = 0; i < children.termControl.length; i++) {
+            this.termControl.push(new SopDate());
+            this.termControl[i].copy(children.termControl[i]);
+        }
+        
+        this.norm = children.norm;
 
         this.notes = children.notes;
 

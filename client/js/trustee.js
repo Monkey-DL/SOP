@@ -3,27 +3,27 @@ class Trustee {
         this.id = 0;
         this.status = "Мама";
         this.firstName = '';
-        this.lastName ='';
-        this.patronymic='';
-        this.birthday='';
-        this.relations='';
+        this.lastName = '';
+        this.patronymic = '';
+        this.birthday = '';
+        this.relations = '';
 
-        this.homeNumber='';
-        this.mobileNumber='';
-        this.workNumber='';
-        this.email='';
+        this.homeNumber = '';
+        this.mobileNumber = '';
+        this.workNumber = '';
+        this.email = '';
 
-        this.district='';
-        this.villageCouncil='';
-        this.locality='';
-        this.address='';
-        this.index='';
+        this.district = '';
+        this.villageCouncil = '';
+        this.locality = '';
+        this.address = '';
+        this.index = '';
 
-        this.work='';
-        this.position='';
-        this.currentEmployment='';
+        this.work = '';
+        this.position = '';
+        this.currentEmployment = '';
 
-        this.notes='';
+        this.notes = '';
 
         trustees.forEach(trustee => {
             if (trustee.getId() >= this.id) {
@@ -31,7 +31,7 @@ class Trustee {
             }
         });
     };
-    
+
     copyTrustee(trustee) {
         this.id = trustee.getId();
         this.status = trustee.getStatus();
@@ -57,6 +57,33 @@ class Trustee {
         this.currentEmployment = trustee.getCurrentEmployment();
 
         this.notes = trustee.getNotes();
+    }
+
+    copyTrusteeJSON(trustee) {
+        this.id = trustee.id;
+        this.status = trustee.status;
+        this.firstName = trustee.firstName;
+        this.lastName = trustee.lastName;
+        this.patronymic = trustee.patronymic;
+        this.birthday = trustee.birthday;
+        this.relations = trustee.relations;
+
+        this.homeNumber = trustee.homeNumber;
+        this.mobileNumber = trustee.mobileNumber;
+        this.workNumber = trustee.work;
+        this.email = trustee.email;
+
+        this.district = trustee.district;
+        this.villageCouncil = trustee.villageCouncil;
+        this.locality = trustee.locality;
+        this.address = trustee.address;
+        this.index = trustee.index;
+
+        this.work = trustee.work;
+        this.position = trustee.position;
+        this.currentEmployment = this.currentEmployment;
+
+        this.notes = trustee.notes;
     }
 
     getId() {

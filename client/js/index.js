@@ -6,21 +6,31 @@ let childrenList = document.getElementById("childrenList");
 let httpRequest = new XMLHttpRequest();
 httpRequest.overrideMimeType('application/json');
 
-window.onload = function () {
-    httpRequest.open('POST', '/getChildrens', true);
+
+window.addEventListener('load', function () {
+    httpRequest.open('POST', '/getData', true);
     httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     httpRequest.onreadystatechange = function () {};
     httpRequest.addEventListener('load', function () {
-        let childrensJSON = JSON.parse(httpRequest.response);
-        childrensJSON.forEach(element => {
+        let ResponseJSON = JSON.parse(httpRequest.response);
+        childrens = [];
+        ResponseJSON[0].forEach(element => {
             childrens.push(new Children(childrens));
-            childrens[childrens.length - 1].copyChildrenJson(element);
+            childrens[childrens.length - 1].copyChildrenJSON(element);
         });
         renderChildrenList();
+
+        trustees = [];
+        ResponseJSON[1].forEach(element => {
+            trustees.push(new Trustee(trustees));
+            trustees[trustees.length - 1].copyTrusteeJSON(element);
+        });
+        console.log(childrens);
     });
     httpRequest.send();
 
-};
+
+});
 
 // Добавление ребёнка
 let targetChildrenIndex;
@@ -38,25 +48,26 @@ targetChildrenButton.addEventListener("click", function () {
 });
 
 confirmChildrenButton.addEventListener("click", function () {
-    childrensJSON = JSON.stringify(targetChildren);
+    let childrensJSON = JSON.stringify(targetChildren);
+    let newTrusteeJSON;
     if (newChildrenToggle) {
-        childrens.push(targetChildren);
         showChildrenInfo(targetChildren, trustees);
         // showChildrenInputs();
-        renderChildrenList();
         newChildrenToggle = !newChildrenToggle;
-
-        console.log(childrensJSON);
 
         httpRequest.onreadystatechange = function () {};
         httpRequest.open('POST', '/addChildren', true);
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         httpRequest.addEventListener('load', function () {
             renderChildrenList();
+
             targetChildren = undefined;
         });
-        httpRequest.send('children=' + childrensJSON);
+        
+        newTrusteeJSON = JSON.stringify(newTrustees);
+        httpRequest.send('children=' + childrensJSON + '&newTrustees=' + newTrusteeJSON);
 
+        newTrustees = [];
         targetChildren = undefined;
     } else {
         childrens.forEach(children => {
@@ -69,10 +80,9 @@ confirmChildrenButton.addEventListener("click", function () {
         httpRequest.open('POST', '/changeChildren', true);
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         httpRequest.addEventListener('load', function () {
-            
+
             showChildrenInfo(targetChildren, trustees);
             renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
-            renderChildrenList();
         });
         httpRequest.send('children=' + childrensJSON);
 
@@ -146,6 +156,9 @@ childrenNormInput.addEventListener("input", function () {
 let targetTrustee;
 let targetTrusteeIndex;
 let newTrusteeToggle = false;
+let newTrustees = [];
+let changetrustees = [];
+
 let targetTrusteeButton = document.getElementById("newTrusteeButton");
 targetTrusteeButton.addEventListener("click", function () {
     targetTrusteeButton.classList.toggle("displaynone");
@@ -153,13 +166,14 @@ targetTrusteeButton.addEventListener("click", function () {
     showTrusteeInputs();
     targetTrustee = new Trustee(trustees);
     newTrusteeToggle = !newTrusteeToggle;
-
 });
+
 // Подтверждение изменений в опекуне
 confirmTrusteeButton.addEventListener("click", function () {
     if (newTrusteeToggle) {
         targetChildren.addTrustee(targetTrustee.getId());
         trustees.push(targetTrustee);
+        // newTrustees.push(targetTrustee);
         showTrusteeInputs();
         newTrusteeToggle = !newTrusteeToggle;
         renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
