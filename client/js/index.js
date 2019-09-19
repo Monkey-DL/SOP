@@ -18,7 +18,7 @@ window.addEventListener('load', function () {
             childrens.push(new Children(childrens));
             childrens[childrens.length - 1].copyChildrenJSON(element);
         });
-        renderChildrenList();
+        renderChildrenList(childrens);
 
         trustees = [];
         ResponseJSON[1].forEach(element => {
@@ -59,11 +59,11 @@ confirmChildrenButton.addEventListener("click", function () {
         httpRequest.open('POST', '/addChildren', true);
         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         httpRequest.addEventListener('load', function () {
-            renderChildrenList();
+            renderChildrenList(childrens);
 
             targetChildren = undefined;
         });
-        
+
         newTrusteeJSON = JSON.stringify(newTrustees);
         httpRequest.send('children=' + childrensJSON + '&newTrustees=' + newTrusteeJSON);
 
@@ -105,7 +105,7 @@ canselChildrenButton.addEventListener("click", function () {
     hiddenAll();
     confirmChangesChildrenButton.classList.toggle("displaynone");
     targetChildrenButton.classList.toggle("displaynone");
-    renderChildrenList();
+    renderChildrenList(childrens);
 });
 
 // Поля ввода данных ребёнка
@@ -152,6 +152,14 @@ childrenNormInput.addEventListener("input", function () {
     targetChildren.setNorm(childrenNormInput.value)
 });
 
+childrenFilterInput.addEventListener("input", function () {
+    if (childrenFilterInput.value == "") {
+        renderChildrenList(childrens);
+    } else {
+        renderChildrenList(childrens.filter(children => !children.getLastName().indexOf(childrenFilterInput.value) > 0));
+    }
+});
+
 // Добавление опекуна
 let targetTrustee;
 let targetTrusteeIndex;
@@ -173,7 +181,7 @@ confirmTrusteeButton.addEventListener("click", function () {
     if (newTrusteeToggle) {
         targetChildren.addTrustee(targetTrustee.getId());
         trustees.push(targetTrustee);
-        // newTrustees.push(targetTrustee);
+        newTrustees.push(targetTrustee);
         showTrusteeInputs();
         newTrusteeToggle = !newTrusteeToggle;
         renderTrusteeList(targetChildren.getTrustees(), targetChildren.getId(), trustees);
@@ -324,7 +332,7 @@ function renderTrusteeList(childrenTrustees, index, trustees) {
 }
 
 // Список детей
-function renderChildrenList() {
+function renderChildrenList(childrens) {
     clearChildrenList();
     for (let i = 0; i < childrens.length; i++) {
         let childrenItem = document.createElement("div");
@@ -350,7 +358,7 @@ function renderChildrenList() {
             httpRequest.open('POST', '/deleteChildren', true);
             httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             httpRequest.addEventListener('load', function () {
-                renderChildrenList();
+                renderChildrenList(childrens);
                 clearChildrenInfo();
                 clearTrusteeInfo();
             });
@@ -378,7 +386,7 @@ function renderChildrenList() {
 
         });
 
-        childrenItem.appendChild(newButton("to_list"));
+        // childrenItem.appendChild(newButton("to_list"));
         childrenItem.appendChild(changeButton);
         childrenItem.appendChild(deleteButton);
 
@@ -398,4 +406,4 @@ function renderChildrenList() {
 
 
 
-renderChildrenList();
+renderChildrenList(childrens);

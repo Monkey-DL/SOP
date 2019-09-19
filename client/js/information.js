@@ -108,6 +108,8 @@ let canselDateButton = document.getElementById("canselDate");
 
 let childrenNotesInput = document.getElementById("childrenNotesInput");
 
+let childrenFilterInput = document.getElementById("childrenFilterInput");
+
 
 let childrenTrusteeList = document.getElementById("childrenTrusteeList");
 
